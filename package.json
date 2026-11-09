@@ -1,0 +1,13 @@
+{
+  "name": "shikhi-math-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bilingual mathematics and ICT learning studio - no build dependencies",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": { "node": ">=18" }
+}

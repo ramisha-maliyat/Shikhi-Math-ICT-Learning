@@ -1,0 +1,1092 @@
+// === topics.js ===
+const groups = [
+  { id:'basics', en:'Number & Arithmetic', bn:'সংখ্যা ও পাটিগণিত', icon:'calculator', color:'mint', tagline:'Start from the foundations', countLabel:'Fundamentals' },
+  { id:'algebra', en:'Algebra & Calculations', bn:'বীজগণিত ও হিসাব', icon:'sigma', color:'purple', tagline:'Patterns, equations and formulas', countLabel:'Algebra' },
+  { id:'geometry', en:'Geometry', bn:'জ্যামিতি', icon:'shapes', color:'orange', tagline:'Understand shapes and space', countLabel:'Geometry' },
+  { id:'higher', en:'Higher Math & Statistics', bn:'উচ্চতর গণিত ও পরিসংখ্যান', icon:'chart', color:'blue', tagline:'Advanced ideas made simple', countLabel:'Advanced' },
+  { id:'ict', en:'ICT Number Systems', bn:'আইসিটি সংখ্যা পদ্ধতি', icon:'binary', color:'pink', tagline:'Binary, octal, decimal and hex', countLabel:'ICT' },
+  { id:'numerical', en:'Numerical Methods', bn:'সংখ্যাতাত্ত্বিক পদ্ধতি', icon:'flask', color:'teal', tagline:'Algorithms with worked iterations', countLabel:'Methods' },
+];
+
+const data = {
+  basics: String.raw`
+Addition|যোগ|Combining two or more quantities to find their total.|দুই বা ততোধিক সংখ্যার মোট যোগফল বের করা।|a + b = sum|12 + 8 = 20
+Subtraction|বিয়োগ|Finding the difference between two quantities.|একটি সংখ্যা থেকে অন্যটি বাদ দিয়ে পার্থক্য বের করা।|a − b = difference|17 − 9 = 8
+Multiplication|গুণ|Repeated addition of the same amount.|একই সংখ্যাকে বারবার যোগ করার সংক্ষিপ্ত পদ্ধতি।|a × b = product|6 × 7 = 42
+Division|ভাগ|Splitting a quantity into equal groups.|একটি পরিমাণকে সমান ভাগে ভাগ করা।|a ÷ b = quotient, b ≠ 0|48 ÷ 6 = 8
+Number|সংখ্যা|A quantity represented by a symbol or symbols.|গণনা বা পরিমাণ বোঝানোর জন্য ব্যবহৃত মান।|0, 1, 2, 3, …|25 is a number
+Digit|অঙ্ক|One of the ten symbols used to write decimal numbers.|দশমিক পদ্ধতিতে সংখ্যা লেখার দশটি চিহ্নের একটি।|0, 1, 2, …, 9|247 has three digits
+Even Number|জোড় সংখ্যা|An integer evenly divisible by 2.|যে পূর্ণসংখ্যাকে ২ দিয়ে নিঃশেষে ভাগ করা যায়।|n mod 2 = 0|18 is even; 18 ÷ 2 = 9
+Odd Number|বিজোড় সংখ্যা|An integer that leaves remainder 1 when divided by 2.|২ দিয়ে ভাগ করলে ভাগশেষ ১ থাকে এমন পূর্ণসংখ্যা।|n mod 2 ≠ 0|19 is odd
+Prime Number|মৌলিক সংখ্যা|An integer greater than 1 with only two positive factors, 1 and itself.|১-এর চেয়ে বড় যে সংখ্যার গুণনীয়ক কেবল ১ এবং সংখ্যাটি নিজে।|Factors = {1, p}|13 is prime; factors 1 and 13
+Composite Number|যৌগিক সংখ্যা|An integer greater than 1 having more than two positive factors.|১-এর চেয়ে বড় এবং দুইয়ের বেশি গুণনীয়ক আছে এমন সংখ্যা।|n = a × b, 1 < a,b < n|12 = 3 × 4, so composite
+Rational Number|মূলদ সংখ্যা|A number expressible as the ratio of two integers.|দুটি পূর্ণসংখ্যার অনুপাত হিসেবে প্রকাশ করা যায় এমন সংখ্যা।|p/q, q ≠ 0|0.75 = 3/4
+Irrational Number|অমূলদ সংখ্যা|A real number that cannot be expressed as a ratio of integers.|পূর্ণসংখ্যার অনুপাত দিয়ে প্রকাশ করা যায় না এমন বাস্তব সংখ্যা।|√2, π, …|√2 ≈ 1.414213…
+Integer|পূর্ণসংখ্যা|Whole numbers together with their negatives and zero.|ধনাত্মক, ঋণাত্মক পূর্ণ সংখ্যা এবং শূন্য।|…, −2, −1, 0, 1, 2, …|−5 and 7 are integers
+Fraction|ভগ্নাংশ|A part of a whole represented by numerator over denominator.|লব ও হর দিয়ে সম্পূর্ণের একটি অংশ প্রকাশ।|fraction = numerator/denominator|3/4 = three quarters
+Decimal|দশমিক|A base-10 representation that may have a fractional part.|দশ ভিত্তিক সংখ্যা যেখানে দশমিকের পরও অঙ্ক থাকে।|3/4 = 0.75|0.25 = 1/4
+Numerator|লব|The top number of a fraction.|ভগ্নাংশের উপরের সংখ্যাটি।|numerator / denominator|In 3/5, 3 is numerator
+Denominator|হর|The bottom number of a fraction; cannot be zero.|ভগ্নাংশের নিচের সংখ্যা; শূন্য হতে পারে না।|numerator / denominator|In 3/5, 5 is denominator
+`,
+  algebra: String.raw`
+Algebra|বীজগণিত|Using letters to represent unknown values and relationships.|অজানা মান বা সম্পর্ক প্রকাশে চলক ও প্রতীক ব্যবহার।|2x + 3 = 11|2x = 8, so x = 4
+Unitary Method|ঐকিক নিয়ম|Find the value of one unit and scale it to many.|প্রথমে একটির মান বের করে তারপর চাহিদামতো সংখ্যার মান নির্ণয়।|unit cost = total ÷ number|5 pens cost 50; 1 pen = 10; 8 pens = 80
+Ratio|অনুপাত|Comparison of two quantities by division.|ভাগের মাধ্যমে দুটি পরিমাণের তুলনা।|a : b = a/b|12 : 8 = 3 : 2
+Proportion|সমানুপাত|Two ratios are equal.|দুটি অনুপাত সমান হওয়ার সম্পর্ক।|a/b = c/d ⇒ ad = bc|2/3 = 4/6
+Percentage|শতকরা / শতকরা হার|A ratio expressed out of one hundred.|প্রতি ১০০-তে কত অংশ বোঝায়।|percent = part/whole × 100|25% of 200 = 50
+Average / Mean|গড়|Sum of observations divided by the number of observations.|সব মানের যোগফলকে মোট মানের সংখ্যা দিয়ে ভাগ।|mean = Σx/n|Mean of 4, 6, 8 = 6
+Profit / Gain|লাভ|When selling price exceeds cost price.|বিক্রয়মূল্য ক্রয়মূল্যের চেয়ে বেশি হলে লাভ হয়।|profit = SP − CP|CP 100, SP 130 → profit 30
+Loss|ক্ষতি / লোকসান|When cost price exceeds selling price.|ক্রয়মূল্য বিক্রয়মূল্যের চেয়ে বেশি হলে ক্ষতি হয়।|loss = CP − SP|CP 100, SP 85 → loss 15
+Principal / Capital|আসল / মূলধন|Initial money invested or borrowed before interest.|বিনিয়োগ বা ঋণের প্রাথমিক অর্থ।|amount = principal + interest|P = 1,000, interest = 100, amount = 1,100
+Interest|সুদ / মুনাফা|Amount paid for using borrowed or invested capital.|অর্থ ধার বা বিনিয়োগের জন্য অতিরিক্ত অর্থ।|simple interest = P × R × T / 100|1000 at 5% for 2 yr → 100
+L.C.M.|লসাগু (লঘিষ্ঠ সাধারণ গুণিতক)|Smallest positive integer divisible by every given number.|প্রদত্ত সংখ্যাগুলোর সবচেয়ে ছোট সাধারণ গুণিতক।|LCM(a,b) × GCD(a,b) = abs(ab)|LCM(6,8) = 24
+H.C.F. / G.C.D.|গসাগু (গরিষ্ঠ সাধারণ গুণনীয়ক)|Largest positive integer dividing all given numbers.|যে সবচেয়ে বড় পূর্ণসংখ্যা সব প্রদত্ত সংখ্যাকে নিঃশেষে ভাগ করে।|GCD(a,b) = GCD(b, a mod b)|GCD(18,24) = 6
+Square|বর্গ|A number multiplied by itself.|একটি সংখ্যাকে সেই সংখ্যা দিয়েই গুণ করা।|a² = a × a|7² = 49
+Square Root|বর্গমূল|A number that produces the original value when squared.|কোনো সংখ্যার বর্গ করলে মূল সংখ্যাটি পাওয়া যায়।|√a × √a = a|√81 = 9
+Cube|ঘন|A number multiplied by itself three times.|একটি সংখ্যাকে তিনবার গুণ করা।|a³ = a × a × a|4³ = 64
+Cube Root|ঘনমূল|A number whose cube is the original.|যে সংখ্যার ঘন করলে মূল সংখ্যা পাওয়া যায়।|∛a × ∛a × ∛a = a|∛125 = 5
+Equation|সমীকরণ|A statement that two mathematical expressions are equal.|দুটি গাণিতিক রাশি সমান বোঝানো উক্তি।|ax + b = c|3x + 2 = 14 ⇒ x = 4
+Variable|চলক|A symbol representing a value that may vary.|মান পরিবর্তন করতে পারে এমন প্রতীক।|x, y, z|In y = 2x, x and y are variables
+Constant|ধ্রুবক|A fixed value that does not change.|যে মান পরিবর্তন হয় না।|π ≈ 3.14159|In y = 3x + 7, 7 is constant
+`,
+  geometry: String.raw`
+Geometry|জ্যামিতি|Study of points, lines, angles, shapes and space.|বিন্দু, রেখা, কোণ ও আকৃতির অধ্যয়ন।|2D and 3D shapes|Triangles and circles are geometric shapes
+Point|বিন্দু|An exact position without size or dimension.|যার শুধু অবস্থান আছে, দৈর্ঘ্য-প্রস্থ নেই।|A(x, y)|Point A(2,3)
+Line|রেখা|A straight path extending infinitely in both directions.|উভয় দিকে অসীম পর্যন্ত বিস্তৃত সরল পথ।|y = mx + c|y = 2x + 1
+Angle|কোণ|Amount of turn between two rays meeting at a vertex.|একই বিন্দুতে মিলিত দুটি রশ্মির মধ্যকার ঘূর্ণন।|full turn = 360°|A 45° angle
+Acute Angle|সূক্ষ্মকোণ|An angle larger than 0° but smaller than 90°.|০° অপেক্ষা বড় ও ৯০° অপেক্ষা ছোট কোণ।|0° < θ < 90°|45° is acute
+Right Angle|সমকোণ|An angle exactly equal to 90°.|ঠিক ৯০° কোণ।|θ = 90°|Corner of a square
+Obtuse Angle|স্থূলকোণ|An angle larger than 90° but smaller than 180°.|৯০° অপেক্ষা বড় এবং ১৮০° অপেক্ষা ছোট কোণ।|90° < θ < 180°|120° is obtuse
+Straight Angle|সরলকোণ|An angle of exactly 180°.|ঠিক ১৮০° কোণ।|θ = 180°|A straight line forms 180°
+Triangle|ত্রিভুজ|A polygon with three sides; internal angles sum to 180°.|তিন বাহুর বহুভুজ; অন্তঃকোণের যোগফল ১৮০°।|area = ½ × base × height|Base 8, height 5 → area 20
+Quadrilateral|চতুর্ভুজ|A four-sided polygon whose inner angles total 360°.|চার বাহুবিশিষ্ট বহুভুজ; কোণের যোগফল ৩৬০°।|Σ interior angles = 360°|90° × 4 = 360°
+Rectangle|আয়তক্ষেত্র|A quadrilateral with four right angles.|চারটি সমকোণবিশিষ্ট চতুর্ভুজ।|area = length × width|6 × 4 = 24 square units
+Square (Shape)|বর্গক্ষেত্র|A quadrilateral with four equal sides and right angles.|চারটি সমান বাহু ও চারটি সমকোণবিশিষ্ট চতুর্ভুজ।|area = side²|5² = 25 square units
+Parallelogram|সামান্তরিক|A quadrilateral with both pairs of opposite sides parallel.|বিপরীত বাহুদ্বয় পরস্পর সমান্তরাল চতুর্ভুজ।|area = base × height|9 × 3 = 27
+Rhombus|রম্বস|A quadrilateral with all four sides equal.|চারটি সমান বাহুবিশিষ্ট চতুর্ভুজ।|area = d₁ × d₂ / 2|Diagonals 8,6 → 24
+Trapezium / Trapezoid|ট্রাপিজিয়াম|A quadrilateral with at least one pair of parallel sides.|অন্তত এক জোড়া সমান্তরাল বাহুবিশিষ্ট চতুর্ভুজ।|area = (a+b) × h / 2|Bases 6,10; h 4 → 32
+Circle|বৃত্ত|All points of a plane equally distant from a centre.|কেন্দ্র থেকে সমদূরবর্তী বিন্দুগুলোর অবস্থান।|area = πr²|r=3 → area ≈ 28.274
+Radius|ব্যাসার্ধ|Distance from the circle centre to its edge.|বৃত্তের কেন্দ্র থেকে পরিধি পর্যন্ত দূরত্ব।|r = d/2|Diameter 10 → radius 5
+Diameter|ব্যাস|Distance across a circle through its centre.|কেন্দ্র দিয়ে অতিক্রমকারী প্রান্ত থেকে প্রান্তের দূরত্ব।|d = 2r|Radius 7 → diameter 14
+Circumference|পরিধি (বৃত্ত)|Length of the boundary of a circle.|বৃত্তের বাইরের সীমানার দৈর্ঘ্য।|C = 2πr|r=7 → C ≈ 43.982
+Chord|জ্যা|A line segment joining two points on a circle.|বৃত্তের পরিধির দুটি বিন্দুর সংযোগ রেখাংশ।|diameter is the longest chord|Diameter passes through centre
+Area|ক্ষেত্রফল|Amount of surface enclosed by a 2D shape.|সমতল আকৃতির ভেতরের স্থানের পরিমাণ।|rectangle area = l × w|5 × 3 = 15 square units
+Perimeter|পরিসীমা|Total distance around the boundary of a polygon.|একটি আকৃতির চারপাশের মোট দৈর্ঘ্য।|rectangle perimeter = 2(l+w)|2(5+3) = 16 units
+`,
+  higher: String.raw`
+Trigonometry|ত্রিকোণমিতি|Relates angles of triangles to ratios of their sides.|ত্রিভুজের কোণ ও বাহুগুলোর অনুপাতের সম্পর্ক।|sin θ = opposite/hypotenuse|sin 30° = 1/2
+Mensuration|পরিমিতি|Calculating length, area, surface area and volume.|দৈর্ঘ্য, ক্ষেত্রফল, তলের ক্ষেত্রফল ও আয়তন নির্ণয়।|cuboid volume = l × w × h|2 × 3 × 4 = 24 cubic units
+Calculus|ক্যালকুলাস|Study of continuous change and accumulation.|অবিচ্ছিন্ন পরিবর্তন ও যোগসঞ্চয়ের গণিত।|d(x²)/dx = 2x|At x=3 slope = 6
+Statistics|পরিসংখ্যান|Collecting, describing and analysing data.|তথ্য সংগ্রহ, বর্ণনা ও বিশ্লেষণ।|mean = Σx/n|Mean of 3, 6, 9 = 6
+Data|উপাত্ত / তথ্য|Recorded observations used to answer questions.|বিশ্লেষণের কাজে ব্যবহৃত পর্যবেক্ষণ বা তথ্য।|data = {x₁, x₂, …}|Scores: 70, 80, 90
+Median|মধ্যক|Middle value after arranging observations in order.|মানগুলো ক্রমানুসারে সাজালে মাঝের মান।|odd n → middle; even n → average of middle two|2, 3, 8 → median 3
+Mode|প্রচুরক|The most frequent value in a dataset.|যে মানটি সবচেয়ে বেশি বার এসেছে।|mode = most frequent value|2,2,3,4 → mode 2
+Permutation|বিন্যাস|Number of arrangements where order matters.|ক্রম গুরুত্বপূর্ণ হলে সাজানোর মোট উপায়।|nPr = n!/(n−r)!|5P2 = 5 × 4 = 20
+Combination|সমাবেশ|Number of selections where order does not matter.|ক্রম গুরুত্বপূর্ণ নয় এমন বাছাইয়ের মোট উপায়।|nCr = n!/[r!(n−r)!]|5C2 = 10
+Probability|সম্ভাব্যতা|Likelihood of an event, between 0 and 1.|কোনো ঘটনা ঘটার সম্ভাবনা, ০ থেকে ১-এর মধ্যে।|P(E) = favourable outcomes / total outcomes|P(even on dice) = 3/6 = 1/2
+`,
+  ict: String.raw`
+Decimal Number System (Base 10)|দশমিক সংখ্যা পদ্ধতি|Uses digits 0 through 9 with place values in powers of 10.|০ থেকে ৯ অঙ্ক ব্যবহার করা ১০ ভিত্তিক সংখ্যা পদ্ধতি।|347₁₀ = 3×10²+4×10¹+7|347₁₀ = 347
+Binary Number System (Base 2)|বাইনারি সংখ্যা পদ্ধতি|Uses only 0 and 1; fundamental to digital computing.|০ ও ১ ব্যবহার করা ডিজিটাল কম্পিউটারের মূল সংখ্যা পদ্ধতি।|1011₂ = 1×2³+0×2²+1×2¹+1|1011₂ = 11₁₀
+Octal Number System (Base 8)|অক্টাল সংখ্যা পদ্ধতি|Uses digits 0 through 7 with powers of 8.|০ থেকে ৭ অঙ্কের ৮ ভিত্তিক পদ্ধতি।|17₈ = 1×8+7|17₈ = 15₁₀
+Hexadecimal Number System (Base 16)|হেক্সাডেসিম্যাল সংখ্যা পদ্ধতি|Uses 0-9 and A-F, representing values 0 through 15.|০–৯ ও A–F অঙ্ক ব্যবহার করা ১৬ ভিত্তিক পদ্ধতি।|2A₁₆ = 2×16+10|2A₁₆ = 42₁₀
+Decimal to Binary / Octal / Hexadecimal Conversion|দশমিক থেকে বাইনারি / অক্টাল / হেক্স|Convert a base-10 number by repeated division or multiplication.|১০ ভিত্তিক সংখ্যা অন্য ভিত্তিতে রূপান্তর।|13₁₀ = 1101₂ = 15₈ = D₁₆|13 ÷ 2 repeatedly gives 1101₂
+Binary to Decimal / Octal / Hexadecimal Conversion|বাইনারি থেকে অন্য সংখ্যা পদ্ধতি|Convert base-2 digits using positional weights or groups.|২ ভিত্তিক সংখ্যা ১০, ৮ বা ১৬ ভিত্তিতে রূপান্তর।|1111₂ = 15₁₀ = 17₈ = F₁₆|1111₂ = 8+4+2+1 = 15
+Octal to Binary / Decimal / Hexadecimal Conversion|অক্টাল থেকে অন্য সংখ্যা পদ্ধতি|Expand base-8 places or convert octal digits to 3-bit groups.|৮ ভিত্তিক সংখ্যা অন্য ভিত্তিতে রূপান্তর।|27₈ = 23₁₀ = 10111₂ = 17₁₆|2×8+7=23
+Hexadecimal to Binary / Octal / Decimal Conversion|হেক্স থেকে অন্য সংখ্যা পদ্ধতি|Convert hexadecimal digits via 4-bit groups or positional weights.|১৬ ভিত্তিক সংখ্যা অন্য ভিত্তিতে রূপান্তর।|1F₁₆ = 31₁₀ = 11111₂ = 37₈|1×16+15=31
+`,
+  numerical: String.raw`
+Bisection Method|দ্বিখণ্ডন পদ্ধতি|Brackets a root where f(a) and f(b) have opposite signs; halves the interval repeatedly.|বিপরীত চিহ্নের দুই প্রান্তের মাঝখান বারবার অর্ধেক করে মূল নির্ণয়।|c = (a+b)/2|For f(x)=x²−4, [1,3] has root 2
+Newton-Raphson Method|নিউটন-রাফসন পদ্ধতি|Uses tangent lines to approximate a root from a starting value.|স্পর্শকের ঢাল দিয়ে প্রাথমিক অনুমান থেকে মূল বের করা।|xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)|For x²−2, x₀=1.5 → x₁≈1.416667
+Secant Method|সেক্যান্ট পদ্ধতি|Approximates a root using two recent points without an explicit derivative.|দুটি প্রাথমিক অনুমান ব্যবহার করে অন্তরক ছাড়াই মূল নির্ণয়।|x₂ = x₁ − f(x₁)(x₁−x₀)/(f(x₁)−f(x₀))|For x²−4, start 1 and 3
+Regula-Falsi Method (False Position)|রেগুলা-ফলসি পদ্ধতি|Uses a secant line while keeping a sign-changing bracket.|বিপরীত চিহ্নবিশিষ্ট সীমা ধরে রেখা দিয়ে মূলের অনুমান।|c = (a f(b)−b f(a))/(f(b)−f(a))|Start f(x)=x²−4 in [1,3]
+Gauss Elimination Method|গাউস অপসারণ পদ্ধতি|Uses row operations to reach upper triangular form followed by back substitution.|সারি রূপান্তরের মাধ্যমে ঊর্ধ্ব ত্রিভুজাকার আকার ও বিপরীত প্রতিস্থাপন।|Ax = b → upper triangular system|2x+y=5; x+y=3 → x=2, y=1
+Gauss-Jordan Elimination Method|গাউস-জর্ডান পদ্ধতি|Reduces an augmented matrix to reduced row-echelon form.|বর্ধিত ম্যাট্রিক্সকে সরলীকৃত সারি-সোপান আকারে আনা।|[A|b] → [I|x]|2x+y=5; x+y=3 → [2,1]
+Gauss-Seidel Iteration Method|গাউস-সাইডেল পুনরাবৃত্তি|Iteratively updates each variable immediately within a linear system.|প্রতি ধাপে নতুন মান সঙ্গে সঙ্গে ব্যবহার করে সমীকরণ সমাধান।|xᵢ⁽ᵏ⁺¹⁾ = (bᵢ−Σaᵢⱼxⱼ)/aᵢᵢ|Works well on strictly diagonally dominant systems
+Jacobi Iteration Method|জ্যাকোবি পুনরাবৃত্তি|Computes each new variable from the previous iteration values.|আগের ধাপের মান দিয়ে সব নতুন চলকের মান একসঙ্গে নির্ণয়।|x⁽ᵏ⁺¹⁾ = D⁻¹(b−(L+U)x⁽ᵏ⁾)|Useful for diagonally dominant systems
+Newton’s Forward Interpolation|নিউটনের অগ্রবর্তী আন্তঃপ্রক্ষেপ|Uses forward differences to estimate values near the start of equally spaced data.|সমান ব্যবধানের ডেটার শুরুর দিকের মান অনুমান।|f(x) ≈ y₀ + pΔy₀ + p(p−1)Δ²y₀/2! + …|Points (0,1),(1,2),(2,5) → f(1.5)≈3.25
+Newton’s Backward Interpolation|নিউটনের পশ্চাৎবর্তী আন্তঃপ্রক্ষেপ|Uses backward differences for equally spaced data near the end.|সমান ব্যবধানের ডেটার শেষের দিকের মান অনুমান।|f(x) ≈ yₙ + p∇yₙ + p(p+1)∇²yₙ/2! + …|Points (0,1),(1,2),(2,5) → f(1.5)≈3.25
+Lagrange’s Interpolation|ল্যাগ্রাঞ্জ আন্তঃপ্রক্ষেপ|Constructs an interpolating polynomial from data at distinct x-values.|পৃথক x-মানের উপাত্ত দিয়ে বহুপদী নির্মাণ করে মধ্যবর্তী মান নির্ণয়।|P(x) = Σ yᵢ ∏[(x−xⱼ)/(xᵢ−xⱼ)]|Points (0,1),(1,2),(2,5) → f(1.5)=3.25
+Trapezoidal Rule|ট্রাপিজয়ডাল নিয়ম|Approximates an integral by adding the areas of trapezoids.|ট্রাপিজিয়ামের ক্ষেত্রফল যোগ করে নির্দিষ্ট সমাকলন অনুমান।|I ≈ h/2 [f₀ + 2Σfᵢ + fₙ]|∫₀¹ x² dx with n=2 → 0.375
+Simpson's 1/3 Rule|সিম্পসনের ১/৩ নিয়ম|Uses parabolic arcs; requires an even number of subintervals.|পরাবৃত্ত দিয়ে সমাকলন; উপবিভাগ সংখ্যা জোড় হতে হবে।|I ≈ h/3 [f₀+4Σfodd+2Σfeven+fₙ]|∫₀¹ x² dx = 1/3 with n=2
+Simpson's 3/8 Rule|সিম্পসনের ৩/৮ নিয়ম|Uses cubic fitting; subinterval count must be divisible by three.|ঘন বহুপদীভিত্তিক অনুমান; উপবিভাগ ৩-এর গুণিতক হতে হবে।|I ≈ 3h/8 [f₀+fₙ+3Σothers+2Σmultiples-of-3]|∫₀³ x² dx = 9 with n=3
+Euler's Method|ইউলারের পদ্ধতি|Approximates solutions of dy/dx=f(x,y) using tangent-line steps.|ঢাল ব্যবহার করে ডিফারেনশিয়াল সমীকরণের কাছাকাছি সমাধান।|yₙ₊₁ = yₙ + h f(xₙ,yₙ)|y′=y, y(0)=1, h=.1 → y₁=1.1
+Runge-Kutta Methods (RK4)|রুঙ্গে-কুটা ৪র্থ ক্রম|Uses four weighted slope estimates per step for accurate ODE solutions.|প্রতিটি ধাপে চারটি ঢাল মিলিয়ে তুলনামূলক নির্ভুল ODE সমাধান।|yₙ₊₁ = yₙ + (k₁+2k₂+2k₃+k₄)/6|y′=y, y(0)=1, h=.1 → y₁≈1.105171
+`
+};
+
+const topics = Object.entries(data).flatMap(([group, text]) => text.trim().split('\n').map((line, i) => {
+  const [en, bn, descriptionEn, descriptionBn, formula, example] = line.split('|');
+  if (![en,bn,descriptionEn,descriptionBn,formula,example].every(Boolean)) throw Error(`Invalid topic data ${group}:${i+1}`);
+  return { id:`${group}-${i}`, group, en, bn, descriptionEn, descriptionBn, formula, example };
+}));
+
+const topicById = Object.fromEntries(topics.map(t => [t.id,t]));
+const groupById = Object.fromEntries(groups.map(g => [g.id,g]));
+function findTopic(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return null;
+  return topics.find(t => t.en.toLowerCase() === q || t.bn === q) ||
+     topics.find(t => t.en.toLowerCase().length > 5 && q.includes(t.en.toLowerCase())) ||
+     topics.find(t => t.bn.length > 3 && q.includes(t.bn)) || null;
+}
+function searchTopics(query, group = 'all') {
+  const q = (query || '').trim().toLowerCase();
+  return topics.filter(t => (group === 'all' || t.group === group) && (!q || [t.en,t.bn,t.descriptionEn,t.descriptionBn].some(s => s.toLowerCase().includes(q))));
+}
+
+// === math.js ===
+// Small safe math parser: no JavaScript eval(), Function(), or external runtime.
+const DIGITS_BN = '০১২৩৪৫৬৭৮৯';
+const westernDigits = value => String(value ?? '').replace(/[০-৯]/g, c => String(DIGITS_BN.indexOf(c)));
+const normalizeMath = text => westernDigits(text).replace(/[×·]/g,'*').replace(/[÷]/g,'/').replace(/[−–]/g,'-').replace(/[π]/g,'pi').replace(/[²]/g,'^2').replace(/[³]/g,'^3').replace(/\s+/g,' ').trim();
+const fmt = (n, digits=8) => {
+  if (typeof n === 'bigint') return n.toString();
+  if (!Number.isFinite(n)) return String(n);
+  if (Math.abs(n) < 1e-12) return '0';
+  const rounded = Number(n.toPrecision(Math.min(digits+3, 14)));
+  return String(rounded);
+};
+
+const FUNCTION_MAP = { sin:Math.sin, cos:Math.cos, tan:Math.tan, asin:Math.asin, acos:Math.acos, atan:Math.atan, log:Math.log10, ln:Math.log, log10:Math.log10, sqrt:Math.sqrt, abs:Math.abs, exp:Math.exp, floor:Math.floor, ceil:Math.ceil, round:Math.round };
+function tokenize(expression) {
+  const s = normalizeMath(expression);
+  if (!s || s.length > 300) throw Error('Enter an expression up to 300 characters.');
+  let pos=0; const tokens=[];
+  while (pos < s.length) {
+    if (/\s/.test(s[pos])) { pos++; continue; }
+    const rest=s.slice(pos);
+    const number=rest.match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/i);
+    if(number) { tokens.push({type:'number',value:Number(number[0])}); pos+=number[0].length; continue; }
+    const ident=rest.match(/^[a-zA-Z]+/);
+    if(ident) { const val=ident[0].toLowerCase(); if(!['x','y','pi','e',...Object.keys(FUNCTION_MAP)].includes(val)) throw Error(`Unsupported symbol: ${val}. Use x, y, pi, e, or standard functions.`); tokens.push({type:'name',value:val}); pos+=ident[0].length; continue; }
+    if('+-*/^()%'.includes(s[pos])) { tokens.push({type:s[pos], value:s[pos]}); pos++; continue; }
+    throw Error(`Unsupported character: ${s[pos]}`);
+  }
+  const result=[];
+  for(let i=0;i<tokens.length;i++) {
+    const a=tokens[i], b=tokens[i+1]; result.push(a);
+    if (!b) continue;
+    const aEnd=a.type==='number'||a.type===')'||a.type==='%'||(a.type==='name' && !FUNCTION_MAP[a.value]);
+    const bStart=b.type==='number'||b.type==='('||b.type==='name';
+    if(aEnd && bStart) result.push({type:'*',value:'*'});
+  }
+  result.push({type:'end'}); return result;
+}
+function evaluateExpression(expression, variables={}) {
+  const tokens=tokenize(expression); let index=0, depth=0;
+  const peek=()=>tokens[index];
+  const eat=t=> { if(peek().type!==t) throw Error(`Expected '${t}'.`); return tokens[index++]; };
+  const priority={'+':1,'-':1,'*':2,'/':2,'^':4};
+  function atom() {
+    if(++depth>70) throw Error('Expression is too deeply nested.');
+    let value; const tok=peek();
+    if(tok.type==='+'||tok.type==='-') { index++; value=(tok.type==='-'?-1:1)*expressionParser(3); }
+    else if(tok.type==='number') { index++; value=tok.value; }
+    else if(tok.type==='(') { index++; value=expressionParser(0); eat(')'); }
+    else if(tok.type==='name') {
+      index++;
+      if(tok.value==='pi') value=Math.PI;
+      else if(tok.value==='e') value=Math.E;
+      else if(['x','y'].includes(tok.value)) {
+        if (!Number.isFinite(variables[tok.value])) throw Error(`Provide a value for ${tok.value}.`);
+        value=variables[tok.value];
+      } else {
+        eat('('); const inner=expressionParser(0); eat(')'); value=FUNCTION_MAP[tok.value](inner);
+      }
+    } else throw Error(`Unexpected input near '${tok.value || 'end'}'.`);
+    while(peek().type==='%') { index++; value/=100; }
+    depth--; return value;
+  }
+  function expressionParser(min) {
+    let left=atom();
+    while(priority[peek().type] !== undefined && priority[peek().type]>=min) {
+      const op=eat(peek().type).type, p=priority[op];
+      const right=expressionParser(p + (op==='^'?0:1));
+      if(op==='+')left+=right;
+      else if(op==='-')left-=right;
+      else if(op==='*')left*=right;
+      else if(op==='/') { if(right===0) throw Error('Division by zero is undefined.'); left/=right; }
+      else left=Math.pow(left,right);
+      if(!Number.isFinite(left)) throw Error('The result is not a finite real number. Check the input.');
+    }
+    return left;
+  }
+  const value=expressionParser(0);
+  if(peek().type!=='end') throw Error(`Unexpected input near '${peek().value || 'end'}'.`);
+  if(!Number.isFinite(value)) throw Error('The expression is outside the real-number domain.');
+  return value;
+}
+const compileExpression = (expression, allowed=['x']) => {
+  // Validate once, but evaluate with provided variable values at each iteration.
+  const testVars={x:1.234,y:1.234};
+  const s=normalizeMath(expression);
+  if(!allowed.includes('x') && /\bx\b/i.test(s)) throw Error('This formula must not contain x.');
+  if(!allowed.includes('y') && /\by\b/i.test(s)) throw Error('Only x is allowed in this formula.');
+  // Avoid rejecting functions that have domain restrictions at test point: syntax only is checked by initial test.
+  try { evaluateExpression(s, testVars); } catch(e) { if(!/finite real number|Division by zero/i.test(e.message)) throw e; }
+  return vars=>evaluateExpression(s,vars);
+};
+function solveEquation(input) {
+  const text=normalizeMath(input).replace(/^solve\s*/i,'').replace(/\s*for\s*x\s*$/i,'');
+  const parts=text.split('='); if(parts.length>2 || !parts[0]) throw Error('Enter an equation like 2x + 5 = 15.');
+  const f=x=>evaluateExpression(parts[0],{x})-evaluateExpression(parts[1] || '0',{x});
+  const c=f(0), at1=f(1), atMinus=f(-1);
+  const a=(at1+atMinus-2*c)/2, b=(at1-atMinus)/2;
+  for(const x of [2,3,-2]) if(Math.abs(f(x)-(a*x*x+b*x+c))>1e-6*Math.max(1,Math.abs(f(x)))) throw Error('The built-in equation solver handles linear and quadratic equations. Use AI Tutor for more complex forms.');
+  if(Math.abs(a)<1e-10) {
+    if(Math.abs(b)<1e-10) return { answer: Math.abs(c)<1e-10?'Infinitely many solutions':'No solution', steps: [`Simplify: ${fmt(c)} = 0`, Math.abs(c)<1e-10?'This identity is always true.':'This is a contradiction.'] };
+    const x=-c/b;
+    return { answer:`x = ${fmt(x)}`, steps:[`Rearrange into ax + b = 0: ${fmt(b)}x ${c<0?'-':'+'} ${fmt(Math.abs(c))} = 0`,`Subtract the constant: ${fmt(b)}x = ${fmt(-c)}`,`Divide both sides by ${fmt(b)}: x = ${fmt(x)}`,`Check: left side − right side = ${fmt(f(x))}`] };
+  }
+  const disc=b*b-4*a*c;
+  const base=[`Standard form: ${fmt(a)}x² ${b<0?'-':'+'} ${fmt(Math.abs(b))}x ${c<0?'-':'+'} ${fmt(Math.abs(c))} = 0`,`Discriminant D = b² − 4ac = ${fmt(disc)}`];
+  if(disc<0) { const real=-b/(2*a),imag=Math.sqrt(-disc)/Math.abs(2*a);return {answer:`x = ${fmt(real)} ± ${fmt(imag)}i`,steps:[...base,'D < 0, so there are no real roots.',`Complex roots: ${fmt(real)} ± ${fmt(imag)}i`]}; }
+  const x1=(-b+Math.sqrt(disc))/(2*a),x2=(-b-Math.sqrt(disc))/(2*a);
+  return {answer:`x = ${fmt(x1)}${Math.abs(x1-x2)>1e-10 ? ` or x = ${fmt(x2)}`:''}`,steps:[...base,`Quadratic formula: x = (−b ± √D) / (2a)`,`Substitute a=${fmt(a)}, b=${fmt(b)}, c=${fmt(c)}`,`Roots: ${fmt(x1)} and ${fmt(x2)}`,`Check f(x₁) = ${fmt(f(x1))}; f(x₂) = ${fmt(f(x2))}`]};
+}
+
+const gcd=(a,b)=>{ a=Math.abs(Math.trunc(a)); b=Math.abs(Math.trunc(b)); while(b){[a,b]=[b,a%b];} return a; };
+const lcm=(a,b)=>a===0||b===0?0:Math.abs(a/gcd(a,b)*b);
+const factorial=n=>{if(!Number.isInteger(n)||n<0||n>170)throw Error('Factorial needs an integer from 0 to 170.');let v=1;for(let i=2;i<=n;i++)v*=i;return v;};
+const primeCheck=n=>{ if(!Number.isSafeInteger(n)||n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true; };
+const numberList=input=>{const nums=westernDigits(input).split(/[\s,;]+/).filter(Boolean).map(Number);if(!nums.length||nums.length>1000||nums.some(n=>!Number.isFinite(n))) throw Error('Enter numbers separated by commas, for example 4, 6, 8.');return nums;};
+function stats(values) {
+  const sorted=[...values].sort((a,b)=>a-b), n=sorted.length;
+  const mean=values.reduce((s,n)=>s+n,0)/n;
+  const median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
+  const frequency=new Map(); values.forEach(v=>frequency.set(v,(frequency.get(v)||0)+1));
+  const highest=Math.max(...frequency.values()); const modes=[...frequency].filter(([,c])=>c===highest).map(([x])=>x);
+  const mode=highest===1?'No mode':modes.map(fmt).join(', ');
+  const variance=values.reduce((s,x)=>s+(x-mean)**2,0)/n;
+  return {mean,median,mode,variance,standardDeviation:Math.sqrt(variance),sorted};
+}
+function requireNum(val,label) {const n=Number(westernDigits(val));if(String(val??'').trim()===''||!Number.isFinite(n))throw Error(`Enter a valid number for ${label}.`);return n;}
+function fractionRead(str) {
+  const s=westernDigits(str).trim();const match=s.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
+  if(!match)throw Error('Use fraction format 3/4 or -2/5.');
+  let num=Number(match[1]),den=Number(match[2]);if(!Number.isSafeInteger(num)||!Number.isSafeInteger(den)||den===0)throw Error('Fractions must have safe integer values and a nonzero denominator.');return [num,den];
+}
+const mathModes = [
+  {id:'expression',en:'Expression',bn:'গাণিতিক রাশি'},
+  {id:'equation',en:'Equation',bn:'সমীকরণ'},
+  {id:'percentage',en:'Percentage',bn:'শতকরা'},
+  {id:'fraction',en:'Fractions',bn:'ভগ্নাংশ'},
+  {id:'ratio',en:'Ratio',bn:'অনুপাত'},
+  {id:'gcd',en:'LCM & HCF',bn:'লসাগু ও গসাগু'},
+  {id:'geometry',en:'Geometry',bn:'জ্যামিতি'},
+  {id:'statistics',en:'Statistics',bn:'পরিসংখ্যান'},
+  {id:'combinatorics',en:'nPr & nCr',bn:'বিন্যাস ও সমাবেশ'},
+  {id:'interest',en:'Simple Interest',bn:'সরল সুদ'},
+  {id:'profit',en:'Profit / Loss',bn:'লাভ / ক্ষতি'},
+  {id:'unitary',en:'Unitary Method',bn:'ঐকিক নিয়ম'},
+  {id:'probability',en:'Probability',bn:'সম্ভাব্যতা'},
+  {id:'trigonometry',en:'Trigonometry',bn:'ত্রিকোণমিতি'},
+  {id:'calculus',en:'Derivative at a Point',bn:'নির্দিষ্ট বিন্দুতে অন্তরক'},
+  {id:'primes',en:'Prime & Factors',bn:'মৌলিক ও গুণনীয়ক'},
+];
+function solveMathTool(mode, v) {
+  if(mode==='expression') {const x=evaluateExpression(v.expression||'');return {answer:fmt(x),steps:[`Expression: ${normalizeMath(v.expression)}`,`Apply parentheses and exponents, then multiplication/division and addition/subtraction.`,`Result = ${fmt(x)}`]};}
+  if(mode==='equation')return solveEquation(v.equation || '');
+  if(mode==='percentage') {const part=requireNum(v.percent,'percentage'), whole=requireNum(v.whole,'whole');const result=part*whole/100;return {answer:fmt(result),steps:[`Formula: percentage × whole ÷ 100`,`= ${fmt(part)} × ${fmt(whole)} ÷ 100`,`= ${fmt(result)}`]};}
+  if(mode==='fraction') {const [a,b]=fractionRead(v.fractionA),[c,d]=fractionRead(v.fractionB);const op=v.operation||'+';let num,den;if(op==='+'){num=a*d+c*b;den=b*d;}else if(op==='-'){num=a*d-c*b;den=b*d;}else if(op==='*'){num=a*c;den=b*d;}else {if(c===0) throw Error('Cannot divide by zero.');num=a*d;den=b*c;}const divider=gcd(num,den);if(!divider)throw Error('Invalid fraction.');num/=divider;den/=divider;if(den<0){num=-num;den=-den;}return {answer:`${num}/${den} = ${fmt(num/den)}`,steps:[`Calculate (${a}/${b}) ${op==='*'?'×':op==='/'?'÷':op} (${c}/${d})`,`Combine numerators and denominators.`,`Reduce using the greatest common divisor.`,`Simplified result = ${num}/${den}`]};}
+  if(mode==='ratio'){const a=requireNum(v.a,'a'),b=requireNum(v.b,'b');if(b===0)throw Error('The second quantity must not be zero.');if(!Number.isInteger(a)||!Number.isInteger(b))return {answer:`${fmt(a)} : ${fmt(b)}`,steps:[`Ratio = ${fmt(a)} / ${fmt(b)} = ${fmt(a/b)}`]};const divider=gcd(a,b);return {answer:`${a/divider} : ${b/divider}`,steps:[`Start with ${a} : ${b}`,`HCF = ${divider}`,`Divide both terms by ${divider}.`,`Simplified ratio = ${a/divider} : ${b/divider}`]};}
+  if(mode==='gcd'){const nums=numberList(v.numbers);if(nums.some(n=>!Number.isSafeInteger(n)||n<0))throw Error('Use nonnegative whole numbers for LCM / HCF.');const h=nums.reduce(gcd),l=nums.reduce(lcm);return {answer:`HCF = ${h}    •    LCM = ${l}`,steps:[`Input numbers: ${nums.join(', ')}`,`HCF: greatest integer dividing all numbers = ${h}`,`LCM: smallest nonnegative common multiple = ${l}`]};}
+  if(mode==='geometry'){const s=v.shape ||'rectangle',a=requireNum(v.a,'first dimension'),b=Number(v.b||0),c=Number(v.c||0);if(a<=0)throw Error('Dimensions must be positive.');let area,perimeter,formula;if(s==='square'){area=a*a;perimeter=4*a;formula='Area = side²; perimeter = 4×side';}else if(s==='circle'){area=Math.PI*a*a;perimeter=2*Math.PI*a;formula='Area = πr²; circumference = 2πr';}else if(s==='triangle'){if(b<=0)throw Error('Enter positive height.');area=a*b/2;perimeter=null;formula='Area = ½ × base × height';}else if(s==='trapezium'){if(b<=0||c<=0)throw Error('Enter positive second base and height.');area=(a+b)*c/2;perimeter=null;formula='Area = (base1 + base2) × height / 2';}else{if(b<=0)throw Error('Enter positive width.');area=a*b;perimeter=2*(a+b);formula='Area = length × width; perimeter = 2(length + width)';}return {answer:`Area = ${fmt(area)}${perimeter==null?'':`  •  ${s==='circle'?'Circumference':'Perimeter'} = ${fmt(perimeter)}`}`,steps:[`Shape: ${s}`,formula,`Area = ${fmt(area)} square units`,...(perimeter==null?[]:[`Boundary = ${fmt(perimeter)} units`])]};}
+  if(mode==='statistics'){const list=numberList(v.numbers);const d=stats(list);return {answer:`Mean = ${fmt(d.mean)} • Median = ${fmt(d.median)} • Mode = ${d.mode}`,steps:[`Sorted data: ${d.sorted.join(', ')}`,`Mean = sum ÷ count = ${fmt(list.reduce((a,b)=>a+b,0))} ÷ ${list.length} = ${fmt(d.mean)}`,`Median = middle value = ${fmt(d.median)}`,`Mode = ${d.mode}`,`Population variance = ${fmt(d.variance)}`,`Population standard deviation = ${fmt(d.standardDeviation)}`]};}
+  if(mode==='combinatorics'){const n=requireNum(v.n,'n'),r=requireNum(v.r,'r');if(!Number.isInteger(n)||!Number.isInteger(r)||r>n||n<0||r<0||n>170)throw Error('Use integers with 0 ≤ r ≤ n ≤ 170.');let perm=1;for(let i=0;i<r;i++)perm*=n-i;let comb=1;for(let i=1;i<=r;i++)comb=comb*(n-i+1)/i;return {answer:`${n}P${r} = ${fmt(perm)} • ${n}C${r} = ${fmt(Math.round(comb))}`,steps:[`Permutation: nPr = n!/(n−r)! = ${fmt(perm)}`,`Combination: nCr = n!/[r!(n−r)!] = ${fmt(Math.round(comb))}`,`Permutation counts arrangements; combination counts selections.`]};}
+  if(mode==='interest'){const p=requireNum(v.p,'principal'),r=requireNum(v.r,'rate'),t=requireNum(v.t,'time');const i=p*r*t/100;return {answer:`Interest = ${fmt(i)} • Amount = ${fmt(p+i)}`,steps:[`Simple interest = Principal × Rate × Time ÷ 100`,`= ${p} × ${r} × ${t} ÷ 100 = ${fmt(i)}`,`Amount = ${p} + ${fmt(i)} = ${fmt(p+i)}`]};}
+  if(mode==='profit'){const cp=requireNum(v.cp,'cost price'),sp=requireNum(v.sp,'selling price');if(cp<=0)throw Error('Cost price must be positive.');const diff=sp-cp,pct=Math.abs(diff/cp*100);return {answer:`${diff>=0?'Profit':'Loss'} = ${fmt(Math.abs(diff))} (${fmt(pct)}%)`,steps:[`Cost price = ${fmt(cp)}; selling price = ${fmt(sp)}`,`Difference = SP − CP = ${fmt(diff)}`,`${diff>=0?'Profit':'Loss'} percentage = |difference| ÷ CP × 100 = ${fmt(pct)}%`]};}
+  if(mode==='unitary') {const amount=requireNum(v.total,'total cost'), count=requireNum(v.count,'number of units'),want=requireNum(v.want,'required units');if(count<=0||want<0)throw Error('Unit count must be positive and required units nonnegative.');const each=amount/count, value=each*want;return {answer:`Unit price = ${fmt(each)} • ${fmt(want)} units = ${fmt(value)}`,steps:[`Step 1: Price for one unit = total price ÷ number of units.`,`= ${fmt(amount)} ÷ ${fmt(count)} = ${fmt(each)}`,`Step 2: Multiply by required units = ${fmt(each)} × ${fmt(want)} = ${fmt(value)}`]};}
+  if(mode==='probability') {const favorable=requireNum(v.favorable,'favourable outcomes'), total=requireNum(v.total,'total outcomes');if(total<=0||favorable<0||favorable>total)throw Error('Require 0 ≤ favourable outcomes ≤ total outcomes, with total > 0.');const p=favorable/total;return {answer:`P(E) = ${fmt(p)} = ${fmt(p*100)}%`,steps:[`Classical probability = favourable outcomes / equally likely total outcomes.`,`P(E) = ${fmt(favorable)} / ${fmt(total)} = ${fmt(p)}`,`As a percentage = ${fmt(p*100)}%.`,`Assumes each outcome is equally likely.`]};}
+  if(mode==='trigonometry') {const angle=requireNum(v.angle,'angle'), unit=v.angleUnit||'deg', func=v.trigFunc||'sin';if(!['sin','cos','tan'].includes(func)||!['deg','rad'].includes(unit))throw Error('Select a supported function and angle unit.');const radians=unit==='deg'?angle*Math.PI/180:angle;if(func==='tan'&&Math.abs(Math.cos(radians))<1e-12)throw Error('Tangent is undefined for this angle.');const result=Math[func](radians);return {answer:`${func}(${fmt(angle)}${unit==='deg'?'°':' rad'}) = ${fmt(result)}`,steps:[`Selected function: ${func}; angle = ${fmt(angle)} ${unit==='deg'?'degrees':'radians'}.`,unit==='deg'?`Convert to radians = ${fmt(angle)} × π/180 = ${fmt(radians)}.`:`Angle already uses radians: ${fmt(radians)}.`,`Evaluate ${func}(${fmt(radians)}) = ${fmt(result)}.`]};}
+  if(mode==='calculus') {const f=compileExpression(v.function||'x^2',['x']),x0=requireNum(v.x0,'x coordinate');const h=1e-5*Math.max(1,Math.abs(x0));const fplus=f({x:x0+h}),fminus=f({x:x0-h});const derivative=(fplus-fminus)/(2*h);if(!Number.isFinite(derivative))throw Error('Cannot estimate derivative at this point.');return {answer:`f′(${fmt(x0)}) ≈ ${fmt(derivative)}`,steps:[`Numerical differentiation uses the central-difference formula.`,`f′(x) ≈ [f(x+h) − f(x−h)] / (2h).`,`At x = ${fmt(x0)}, choose h = ${fmt(h)}.`,`f(x+h) = ${fmt(fplus)}; f(x−h) = ${fmt(fminus)}.`,`Estimated derivative = ${fmt(derivative)} (an approximation).`]};}
+  if(mode==='primes') {const n=requireNum(v.n,'number');if(!Number.isSafeInteger(n)||n<1||n>1e9)throw Error('Enter a whole number from 1 to 1,000,000,000.');let remain=n;const factors=[];for(let i=2;i*i<=remain;i++)while(remain%i===0){factors.push(i);remain/=i;}if(remain>1)factors.push(remain);const prime=primeCheck(n);return {answer:`${n} is ${n===1?'neither prime nor composite':prime?'prime':'composite'}.`,steps:[n===1?'The number 1 has only one positive divisor, so it is neither prime nor composite.':prime?`The only positive divisors are 1 and ${n}.`:`Prime factorization = ${factors.join(' × ')}.`,...(n===1?[]:[`Number of prime factors (including repeats) = ${factors.length}.`,`Prime numbers have exactly two positive divisors.`])]};}
+  throw Error('Choose a valid tool.');
+}
+
+const ALPHABET='0123456789ABCDEF';
+function convertBase(input, fromBase) {
+  const base=Number(fromBase);
+  if(![2,8,10,16].includes(base))throw Error('Choose a base: 2, 8, 10 or 16.');
+  const text=westernDigits(input).trim().replace(/\s/g,'').toUpperCase();
+  if(!/^[+-]?[0-9A-F]+(?:\.[0-9A-F]+)?$/.test(text) || text.length>120)throw Error('Enter a valid number containing digits appropriate for the selected base.');
+  const negative=text.startsWith('-'), body=text.replace(/^[+-]/,'');
+  const [whole, fractional='']=body.split('.');
+  for(const digit of whole+fractional)if(ALPHABET.indexOf(digit)>=base)throw Error(`Digit '${digit}' is not valid in base ${base}.`);
+  let integer=0n, numerator=0n, denominator=1n;
+  for(const digit of whole)integer=integer*BigInt(base)+BigInt(ALPHABET.indexOf(digit));
+  for(const digit of fractional) { numerator=numerator*BigInt(base)+BigInt(ALPHABET.indexOf(digit));denominator*=BigInt(base); }
+  const conversions={};
+  for(const target of [2,8,10,16]) {
+    let value=integer.toString(target).toUpperCase(), remainder=numerator, digits='';
+    for(let i=0;i<18 && remainder!==0n;i++) { remainder*=BigInt(target);const d=remainder/denominator; remainder%=denominator;digits+=ALPHABET[Number(d)]; }
+    if(digits)value+='.'+digits+(remainder!==0n?'…':'');
+    conversions[target]=(negative && (integer!==0n||numerator!==0n)?'-':'')+value;
+  }
+  const expansion=[...whole].map((d,i)=>`${ALPHABET.indexOf(d)}×${base}^${whole.length-i-1}`);
+  const explanation=[`Input: ${text} (base ${base})`,`Integer positional expansion: ${expansion.length?expansion.join(' + '):'0'}`,`Integer part in decimal: ${integer.toString()}`,fractional?`Fractional part uses negative powers: ${[...fractional].map((d,i)=>`${ALPHABET.indexOf(d)}×${base}^(-${i+1})`).join(' + ')}`:'No fractional digits.',`Integer conversion: repeatedly divide by the target base and read remainders in reverse order.`, `Fractional conversion: repeatedly multiply the fractional part by the target base and collect integer digits.`,`Fractional outputs are limited to 18 digits; an ellipsis indicates a repeating/unfinished expansion.`];
+  return { conversions, explanation };
+}
+
+// === numerical.js ===
+
+const numericalFamilies = [
+  {id:'roots',en:'Root Finding',bn:'মূল নির্ণয়',methods:['bisection','newton','secant','regula']},
+  {id:'linear',en:'Linear Systems',bn:'রৈখিক সমীকরণ',methods:['gauss','jordan','seidel','jacobi']},
+  {id:'interpolation',en:'Interpolation',bn:'আন্তঃপ্রক্ষেপ',methods:['forward','backward','lagrange']},
+  {id:'integration',en:'Integration',bn:'সমাকলন',methods:['trapezoid','simpson13','simpson38']},
+  {id:'ode',en:'Differential Equations',bn:'অন্তরক সমীকরণ',methods:['euler','rk4']}
+];
+const numericalMethods = [
+  {id:'bisection',en:'Bisection Method',bn:'দ্বিখণ্ডন পদ্ধতি',family:'roots'},
+  {id:'newton',en:'Newton–Raphson',bn:'নিউটন–রাফসন',family:'roots'},
+  {id:'secant',en:'Secant Method',bn:'সেক্যান্ট পদ্ধতি',family:'roots'},
+  {id:'regula',en:'Regula–Falsi',bn:'রেগুলা–ফলসি',family:'roots'},
+  {id:'gauss',en:'Gauss Elimination',bn:'গাউস অপসারণ',family:'linear'},
+  {id:'jordan',en:'Gauss–Jordan',bn:'গাউস–জর্ডান',family:'linear'},
+  {id:'seidel',en:'Gauss–Seidel',bn:'গাউস–সাইডেল',family:'linear'},
+  {id:'jacobi',en:'Jacobi Iteration',bn:'জ্যাকোবি পুনরাবৃত্তি',family:'linear'},
+  {id:'forward',en:'Newton Forward Interpolation',bn:'নিউটনের অগ্রবর্তী আন্তঃপ্রক্ষেপ',family:'interpolation'},
+  {id:'backward',en:'Newton Backward Interpolation',bn:'নিউটনের পশ্চাৎবর্তী আন্তঃপ্রক্ষেপ',family:'interpolation'},
+  {id:'lagrange',en:'Lagrange Interpolation',bn:'ল্যাগ্রাঞ্জ আন্তঃপ্রক্ষেপ',family:'interpolation'},
+  {id:'trapezoid',en:'Trapezoidal Rule',bn:'ট্রাপিজয়ডাল নিয়ম',family:'integration'},
+  {id:'simpson13',en:"Simpson's 1/3 Rule",bn:'সিম্পসনের ১/৩ নিয়ম',family:'integration'},
+  {id:'simpson38',en:"Simpson's 3/8 Rule",bn:'সিম্পসনের ৩/৮ নিয়ম',family:'integration'},
+  {id:'euler',en:"Euler's Method",bn:'ইউলারের পদ্ধতি',family:'ode'},
+  {id:'rk4',en:'Runge–Kutta RK4',bn:'রুঙ্গে–কুটা ৪র্থ ক্রম',family:'ode'}
+];
+const num=(raw,label) => { if(raw===undefined||raw===null||westernDigits(raw).trim()==='')throw Error(`Enter ${label}.`); const n=Number(westernDigits(raw));if(!Number.isFinite(n))throw Error(`${label} must be a valid number.`);return n; };
+const integer=(raw,label,minimum=1,maximum=150)=>{const n=num(raw,label);if(!Number.isInteger(n)||n<minimum||n>maximum)throw Error(`${label} must be an integer from ${minimum} to ${maximum}.`);return n;};
+const fformat=v=>fmt(v,8);
+const safeResult=(x,label='Result')=> { if(!Number.isFinite(x))throw Error(`${label} is not finite. Check the function or input interval.`);return x; };
+function rootSolve(method,p) {
+  const f=compileExpression(p.function || 'x^3-x-2');
+  const fn=x=>safeResult(f({x}),'Function value');
+  const tol=num(p.tolerance||'0.000001','tolerance');if(tol<=0||tol>=1)throw Error('Tolerance must be between 0 and 1.');
+  const max=integer(p.maxIter||'25','max iterations',1,100);
+  let a=num(p.a??1,'left endpoint'),b=num(p.b??2,'right endpoint');
+  let x0=num(p.x0??1.5,'initial guess'),x1=num(p.x1??2,'second guess');
+  const rows=[];let root=NaN,converged=false;
+  if(['bisection','regula'].includes(method)) {
+    let fa=fn(a),fb=fn(b);
+    if(a>=b)throw Error('Left endpoint must be smaller than right endpoint.');
+    if(fa*fb>0)throw Error('f(a) and f(b) must have opposite signs to bracket a root.');
+    if(fa===0) return {answer:`x = ${fformat(a)}`,headers:['Step','x','f(x)'],rows:[['Endpoint',fformat(a),'0']],steps:['The left endpoint is exactly a root.']};
+    if(fb===0) return {answer:`x = ${fformat(b)}`,headers:['Step','x','f(x)'],rows:[['Endpoint',fformat(b),'0']],steps:['The right endpoint is exactly a root.']};
+    for(let i=1;i<=max;i++) {
+      const c=method==='bisection'?(a+b)/2:(a*fb-b*fa)/(fb-fa);
+      const fc=fn(c); root=c;
+      rows.push([i,fformat(a),fformat(b),fformat(c),fformat(fc)]);
+      if(Math.abs(fc)<tol||Math.abs(b-a)<tol) {converged=true;break;}
+      if(fa*fc<0){b=c;fb=fc;} else {a=c;fa=fc;}
+    }
+    return {answer:`x ≈ ${fformat(root)}`,headers:['Iter','a','b','c (root)','f(c)'],rows,steps:[method==='bisection'?'Midpoint formula: c = (a+b)/2.':'False position: c = (a·f(b) − b·f(a)) / (f(b) − f(a)).','After each step, retain the interval where the function changes sign.',`Stopping tolerance = ${tol}.`,converged?'Converged within tolerance.':'Iteration limit reached; result is an approximation.']};
+  }
+  if(method==='newton') {
+    for(let i=1;i<=max;i++) {
+      const fx=fn(x0),h=1e-5*Math.max(1,Math.abs(x0));
+      const df=(fn(x0+h)-fn(x0-h))/(2*h);
+      if(Math.abs(df)<1e-12)throw Error('Derivative is zero or too small near the current guess. Try another starting value.');
+      const next=safeResult(x0-fx/df);root=next;
+      rows.push([i,fformat(x0),fformat(fx),fformat(df),fformat(next)]);
+      if(Math.abs(next-x0)<tol || Math.abs(fn(next))<tol){converged=true;break;}
+      x0=next;
+    }
+    return {answer:`x ≈ ${fformat(root)}`,headers:['Iter','xₙ','f(xₙ)','f′(xₙ)','xₙ₊₁'],rows,steps:['Newton update: xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ).','The derivative is approximated numerically by a central difference.',converged?'Converged within tolerance.':'Iteration limit reached; solution may not have converged.']};
+  }
+  if(method==='secant') {
+    if(x0===x1)throw Error('Two initial guesses must be different.');
+    for(let i=1;i<=max;i++) {
+      const f0=fn(x0),f1=fn(x1),d=f1-f0;
+      if(Math.abs(d)<1e-14)throw Error('Secant slope is zero; try different starting values.');
+      const x2=safeResult(x1-f1*(x1-x0)/d);root=x2;
+      rows.push([i,fformat(x0),fformat(x1),fformat(x2),fformat(fn(x2))]);
+      if(Math.abs(x2-x1)<tol||Math.abs(fn(x2))<tol){converged=true;break;}
+      x0=x1;x1=x2;
+    }
+    return {answer:`x ≈ ${fformat(root)}`,headers:['Iter','xₙ₋₁','xₙ','xₙ₊₁','f(xₙ₊₁)'],rows,steps:['Secant: xₙ₊₁ = xₙ − f(xₙ)(xₙ−xₙ₋₁) / (f(xₙ)−f(xₙ₋₁)).','It needs two initial points but no derivative.',converged?'Converged within tolerance.':'Iteration limit reached; solution may not have converged.']};
+  }
+  throw Error('Unrecognized root method.');
+}
+function readMatrix(input) {
+  const lines=westernDigits(String(input||'')).trim().split(/\r?\n/).filter(Boolean);
+  if(lines.length<2||lines.length>8)throw Error('Enter 2–8 equations, one row per line (for example: 4,1|6).');
+  const n=lines.length;
+  return lines.map((line,i)=>{
+    const parts=line.split('|');if(parts.length!==2)throw Error(`Row ${i+1} must use a | before its right-hand value.`);
+    const cells=parts[0].split(',').map(s=>Number(s.trim()));const rhs=Number(parts[1].trim());
+    if(cells.length!==n||[...cells,rhs].some(v=>!Number.isFinite(v)))throw Error(`Row ${i+1} must contain ${n} coefficients and one right-hand value.`);
+    return [...cells,rhs];
+  });
+}
+const formatMatrix=m=>m.map(row=>'[ '+row.map(x=>String(fformat(x)).padStart(10,' ')).join('  ')+' ]').join('\n');
+function linearSolve(method,p) {
+  const mat=readMatrix(p.matrix||'4,1|6\n1,3|7');const n=mat.length;
+  const steps=[],rows=[];
+  if(['gauss','jordan'].includes(method)) {
+    const m=mat.map(row=>[...row]);
+    for(let col=0;col<n;col++) {
+      let pivot=col;
+      for(let r=col+1;r<n;r++)if(Math.abs(m[r][col])>Math.abs(m[pivot][col]))pivot=r;
+      if(Math.abs(m[pivot][col])<1e-12)throw Error('Matrix is singular or nearly singular; a unique solution cannot be computed.');
+      if(pivot!==col){[m[col],m[pivot]]=[m[pivot],m[col]];steps.push(`Swap R${col+1} and R${pivot+1}.`);rows.push([`Swap ${col+1}/${pivot+1}`,formatMatrix(m)]);}
+      if(method==='jordan'){
+        const divisor=m[col][col];m[col]=m[col].map(v=>v/divisor);
+        steps.push(`Normalize pivot row R${col+1}.`); rows.push([`Normalize R${col+1}`,formatMatrix(m)]);
+      }
+      for(let row=method==='jordan'?0:col+1;row<n;row++) {
+        if(row===col)continue;
+        const factor=method==='jordan'?m[row][col]:m[row][col]/m[col][col];
+        if(Math.abs(factor)<1e-14)continue;
+        for(let k=col;k<=n;k++)m[row][k]-=factor*m[col][k];
+        rows.push([`R${row+1} elimination`,formatMatrix(m)]);
+      }
+    }
+    const solution=new Array(n).fill(0);
+    if(method==='jordan'){for(let i=0;i<n;i++)solution[i]=m[i][n];}
+    else {for(let i=n-1;i>=0;i--){let rhs=m[i][n];for(let j=i+1;j<n;j++)rhs-=m[i][j]*solution[j];solution[i]=rhs/m[i][i];}}
+    return {answer:solution.map((x,i)=>`x${i+1} = ${fformat(x)}`).join('  •  '),headers:['Operation','Augmented matrix'],rows,steps:[...steps,method==='gauss'?'Back-substitute from the last row to obtain each variable.':'Reduced row-echelon form gives the variables directly.','Partial pivoting selects the largest available pivot to improve stability.']};
+  }
+  const tol=num(p.tolerance||'0.000001','tolerance'), max=integer(p.maxIter||'25','max iterations',1,100);
+  if(tol<=0||tol>=1)throw Error('Tolerance must be between 0 and 1.');
+  for(let i=0;i<n;i++)if(Math.abs(mat[i][i])<1e-12)throw Error(`Diagonal value at row ${i+1} is zero; reorder the equations.`);
+  let current=new Array(n).fill(0),converged=false;
+  const dominant=mat.every((row,i)=>Math.abs(row[i])>row.slice(0,n).reduce((s,v,j)=>s+(i===j?0:Math.abs(v)),0));
+  for(let k=1;k<=max;k++) {
+    const next=[...current];
+    for(let i=0;i<n;i++) {
+      let sum=mat[i][n];
+      for(let j=0;j<n;j++) if(i!==j)sum-=mat[i][j]*(method==='seidel'?next[j]:current[j]);
+      next[i]=safeResult(sum/mat[i][i]);
+    }
+    const difference=Math.max(...next.map((x,i)=>Math.abs(x-current[i])));
+    rows.push([k,...next.map(fformat),fformat(difference)]);
+    current=next;if(difference<tol){converged=true;break;}
+  }
+  return {answer:current.map((v,i)=>`x${i+1} ≈ ${fformat(v)}`).join('  •  '),headers:['Iter',...current.map((_,i)=>`x${i+1}`),'Max Δ'],rows,steps:[method==='seidel'?'Gauss-Seidel immediately uses new values as they are found.':'Jacobi computes all new values from the previous iteration.',dominant?'The system is strictly diagonally dominant, which guarantees convergence for this iteration.':'Warning: matrix is not strictly diagonally dominant; convergence is not guaranteed.',converged?'Converged within tolerance.':'Iteration limit reached; the result may not be converged.']};
+}
+function readPoints(raw) {
+  const lines=westernDigits(String(raw||'')).trim().split(/\r?\n/).filter(Boolean);
+  if(lines.length<2||lines.length>15)throw Error('Enter 2–15 points, one x,y pair per line.');
+  const points=lines.map((line,i)=>{const a=line.split(',').map(s=>Number(s.trim()));if(a.length!==2||a.some(v=>!Number.isFinite(v)))throw Error(`Point ${i+1} must be in x,y format.`);return a;}).sort((a,b)=>a[0]-b[0]);
+  for(let i=1;i<points.length;i++)if(points[i][0]===points[i-1][0])throw Error('All x-values must be distinct.');
+  return points;
+}
+function interpolate(method,p) {
+  const points=readPoints(p.points||'0,1\n1,2\n2,5\n3,10'),x=num(p.queryX??'1.5','target x');
+  const n=points.length,rows=[];let value=0;
+  if(method==='lagrange') {
+    for(let i=0;i<n;i++) {
+      let weight=1;
+      for(let j=0;j<n;j++)if(i!==j)weight*=(x-points[j][0])/(points[i][0]-points[j][0]);
+      const term=points[i][1]*weight;value+=term;
+      rows.push([i,fformat(points[i][0]),fformat(points[i][1]),fformat(weight),fformat(term)]);
+    }
+    return {answer:`f(${fmt(x)}) ≈ ${fformat(value)}`,headers:['i','xᵢ','yᵢ','Lᵢ(x)','yᵢLᵢ(x)'],rows,steps:['Lagrange formula: P(x) = Σ yᵢ × ∏(x−xⱼ)/(xᵢ−xⱼ).','Compute one basis polynomial for each point and add all contributions.','Distinct x-coordinates are required.']};
+  }
+  const h=points[1][0]-points[0][0];
+  if(h===0||points.some((point,i)=>i>0 && Math.abs(point[0]-points[i-1][0]-h)>1e-8*Math.max(1,Math.abs(h))))throw Error('Newton forward/backward interpolation requires equally spaced x-values. Use Lagrange for unequal spacing.');
+  const delta=[points.map(pt=>pt[1])];
+  for(let k=1;k<n;k++){const last=delta[k-1];delta.push(last.slice(1).map((y,i)=>y-last[i]));}
+  const forward=method==='forward',origin=forward?points[0][0]:points[n-1][0],u=(x-origin)/h;
+  let multiplier=1;
+  for(let k=0;k<n;k++) {
+    if(k>0)multiplier*= (u+(forward?k*-1+1:k-1))/k; // Forward: (u-k+1)/k; backward: (u+k-1)/k.
+    const deltaY=forward?delta[k][0]:delta[k][delta[k].length-1];
+    const term=multiplier*deltaY;value+=term;
+    rows.push([k,fformat(deltaY),fformat(multiplier),fformat(term),fformat(value)]);
+  }
+  return {answer:`f(${fmt(x)}) ≈ ${fformat(value)}`,headers:['Order','Difference','Coefficient','Term','Running total'],rows,steps:[`Equal spacing h = ${fformat(h)}; u = (x − ${fformat(origin)}) / h = ${fformat(u)}.`,forward?'Use the first entry in each forward difference order.':'Use the last entry in each backward difference order.','Sum the difference terms with the appropriate Newton polynomial weights.']};
+}
+function integrate(method,p) {
+  const f=compileExpression(p.function||'x^2');const a=num(p.a??'0','lower bound'),b=num(p.b??'1','upper bound');
+  const n=integer(p.n||'6','subinterval count',1,150);
+  if(a===b)return {answer:'Integral ≈ 0',headers:['i','x','f(x)','weight'],rows:[],steps:['The integration interval has zero width.']};
+  if(method==='simpson13' && n%2!==0)throw Error("Simpson's 1/3 rule needs an even number of subintervals (n = 2, 4, 6, …).");
+  if(method==='simpson38' && n%3!==0)throw Error("Simpson's 3/8 rule needs subintervals divisible by 3 (n = 3, 6, 9, …).");
+  const h=(b-a)/n;let weightedSum=0;const rows=[];
+  for(let i=0;i<=n;i++) {
+    const x=a+i*h,y=safeResult(f({x}));
+    const weight=(i===0||i===n)?1:method==='trapezoid'?2:method==='simpson13'?(i%2===0?2:4):(i%3===0?2:3);
+    rows.push([i,fformat(x),fformat(y),weight]);weightedSum+=weight*y;
+  }
+  const multiplier=method==='trapezoid'?h/2:method==='simpson13'?h/3:3*h/8;
+  return {answer:`∫ f(x) dx ≈ ${fformat(weightedSum*multiplier)}`,headers:['i','x','f(x)','weight'],rows,steps:[`Interval: [${fmt(a)}, ${fmt(b)}]; number of subintervals n = ${n}.`,`Step size h = (b − a) / n = ${fformat(h)}.`,method==='trapezoid'?'Weights: 1, 2, 2, …, 2, 1.':method==='simpson13'?'Weights: 1, 4, 2, 4, …, 4, 1.':'Weights: 1, 3, 3, 2, 3, 3, …, 1.',`Weighted sum = ${fformat(weightedSum)}.`,`Answer = weighted sum × ${fformat(multiplier)} = ${fformat(weightedSum*multiplier)}.`]};
+}
+function ode(method,p) {
+  const f=compileExpression(p.function||'x+y',['x','y']);
+  const x0=num(p.x0??'0','initial x'),y0=num(p.y0??'1','initial y'),target=num(p.target??'1','target x');
+  const hInput=num(p.h??'0.1','step h');if(hInput===0)throw Error('Step size h must not be zero.');
+  const distance=target-x0;
+  if(distance*hInput<0)throw Error('Step h must point toward the target x.');
+  const count=Math.ceil(Math.abs(distance/hInput)-1e-12);
+  if(count>150)throw Error('Too many steps. Increase |h| so the calculation has at most 150 iterations.');
+  const rows=[];let x=x0,y=y0;
+  for(let i=1;i<=count;i++) {
+    const h=Math.abs(target-x)<Math.abs(hInput)?target-x:hInput;
+    if(method==='euler'){const slope=safeResult(f({x,y}));const next=safeResult(y+h*slope);rows.push([i,fformat(x),fformat(y),fformat(slope),fformat(next)]);y=next;}
+    else{
+      const k1=h*safeResult(f({x,y}));
+      const k2=h*safeResult(f({x:x+h/2,y:y+k1/2}));
+      const k3=h*safeResult(f({x:x+h/2,y:y+k2/2}));
+      const k4=h*safeResult(f({x:x+h,y:y+k3}));
+      const next=safeResult(y+(k1+2*k2+2*k3+k4)/6);
+      rows.push([i,fformat(x),fformat(y),fformat(k1),fformat(k2),fformat(k3),fformat(k4),fformat(next)]);y=next;
+    }
+    x+=h;
+  }
+  return {answer:`y(${fformat(target)}) ≈ ${fformat(y)}`,headers:method==='euler'?['Step','xₙ','yₙ','slope','yₙ₊₁']:['Step','xₙ','yₙ','k₁','k₂','k₃','k₄','yₙ₊₁'],rows,steps:[`Initial condition y(${fmt(x0)}) = ${fmt(y0)}; target x = ${fmt(target)}.`,method==='euler'?'Euler update: yₙ₊₁ = yₙ + h f(xₙ,yₙ).':'RK4 uses four slopes: k₁ at start, k₂ and k₃ at midpoint, k₄ at end.',method==='euler'?'Euler is first-order: reducing step size usually improves precision.':'RK4 is fourth-order for smooth problems and usually more accurate at the same step size.',`Final y ≈ ${fformat(y)}.`]};
+}
+function solveNumerical(method,p={}) {
+  if(['bisection','newton','secant','regula'].includes(method))return rootSolve(method,p);
+  if(['gauss','jordan','seidel','jacobi'].includes(method))return linearSolve(method,p);
+  if(['forward','backward','lagrange'].includes(method))return interpolate(method,p);
+  if(['trapezoid','simpson13','simpson38'].includes(method))return integrate(method,p);
+  if(['euler','rk4'].includes(method))return ode(method,p);
+  throw Error('Unknown numerical method.');
+}
+
+// === locale.js ===
+/** Concise bilingual walkthroughs, preserving numerical values and mathematical notation. */
+function translateStepBN(step, context='math') {
+  const rules = [
+    [/^Rearrange into ax \+ b = 0: /, 'সমীকরণকে ax + b = 0 আকারে লিখি: '],
+    [/^Subtract the constant: /, 'ধ্রুবক পদ অন্য পাশে নিই: '],
+    [/^Divide both sides by /, 'উভয় পাশ ভাগ করি '],
+    [/^Check: left side − right side = /, 'যাচাই: বামপক্ষ − ডানপক্ষ = '],
+    [/^Check: /, 'উত্তর যাচাই: '],
+    [/^Standard form: /, 'সমীকরণের আদর্শ রূপ: '],
+    [/^Discriminant D = /, 'বিচারক D = '],
+    [/^Quadratic formula: /, 'দ্বিঘাত সমীকরণের সূত্র: '],
+    [/^Substitute /, 'সূত্রে মান বসাই: '],
+    [/^Roots: /, 'সমীকরণের মূল: '],
+    [/^Complex roots: /, 'জটিল মূল: '],
+    [/^D < 0, so there are no real roots\./, 'D ঋণাত্মক, তাই বাস্তব মূল নেই।'],
+    [/^This identity is always true\./, 'সমীকরণটি সব সময় সত্য।'],
+    [/^This is a contradiction\./, 'সমীকরণটির কোনো সমাধান নেই।'],
+    [/^Simplify: /, 'সরল করলে পাই: '],
+    [/^Expression: /, 'দেওয়া গাণিতিক রাশি: '],
+    [/^Apply parentheses and exponents.*$/, 'প্রথমে বন্ধনী ও ঘাত, এরপর গুণ/ভাগ এবং সবশেষে যোগ/বিয়োগ করুন।'],
+    [/^Result = /, 'ফলাফল = '],
+    [/^Formula: percentage × whole ÷ 100$/, 'সূত্র: শতকরা হার × মোট সংখ্যা ÷ ১০০'],
+    [/^Formula: /, 'সূত্র: '],
+    [/^Step 1: /, 'ধাপ ১: '],
+    [/^Step 2: /, 'ধাপ ২: '],
+    [/^Classical probability = /, 'প্রচলিত সম্ভাব্যতার সূত্র = '],
+    [/^As a percentage = /, 'শতকরায় = '],
+    [/^Assumes each outcome is equally likely\./, 'প্রতিটি ফলাফল সমান সম্ভাবনাময় ধরে নেওয়া হয়েছে।'],
+    [/^Selected function: /, 'নির্বাচিত ফাংশন: '],
+    [/^Convert to radians = /, 'রেডিয়ানে রূপান্তর করি = '],
+    [/^Evaluate /, 'মান নির্ণয় করি '],
+    [/^Numerical differentiation uses the central-difference formula\./, 'কেন্দ্রীয় পার্থক্য সূত্র ব্যবহার করে অন্তরকের আনুমানিক মান বের করি।'],
+    [/^At x = /, 'x-এর মান বসাই: '],
+    [/^Estimated derivative = /, 'আনুমানিক অন্তরকের মান = '],
+    [/^The only positive divisors are /, 'ধনাত্মক গুণনীয়ক কেবল '],
+    [/^Prime factorization = /, 'মৌলিক গুণনীয়কে বিশ্লেষণ = '],
+    [/^Number of prime factors /, 'মৌলিক গুণনীয়কের সংখ্যা '],
+    [/^Prime numbers have exactly two positive divisors\./, 'মৌলিক সংখ্যার ধনাত্মক গুণনীয়ক ঠিক দুইটি।'],
+    [/^Calculate \(/, 'হিসাব করি ('],
+    [/^Combine numerators and denominators\./, 'ভগ্নাংশের লব ও হর নির্দিষ্ট নিয়মে হিসাব করি।'],
+    [/^Reduce using the greatest common divisor\./, 'গসাগু দিয়ে লব ও হর ভাগ করে ভগ্নাংশটি সরল করি।'],
+    [/^Simplified result = /, 'সরলীকৃত ফলাফল = '],
+    [/^Start with /, 'প্রথমে অনুপাত নিই: '],
+    [/^HCF = /, 'গসাগু = '],
+    [/^Divide both terms by /, 'অনুপাতের উভয় পদকে ভাগ করি '],
+    [/^Simplified ratio = /, 'সরল অনুপাত = '],
+    [/^Input numbers: /, 'দেওয়া সংখ্যাগুলো: '],
+    [/^HCF: greatest integer dividing all numbers = /, 'সব সংখ্যার সর্বোচ্চ সাধারণ গুণনীয়ক (গসাগু) = '],
+    [/^LCM: smallest nonnegative common multiple = /, 'সব সংখ্যার লঘিষ্ঠ সাধারণ গুণিতক (লসাগু) = '],
+    [/^Shape: /, 'আকৃতি: '],
+    [/^Area = /, 'ক্ষেত্রফল = '],
+    [/^Boundary = /, 'পরিসীমা = '],
+    [/^Sorted data: /, 'ছোট থেকে বড় করে সাজানো তথ্য: '],
+    [/^Mean = /, 'গড় = '],
+    [/^Median = /, 'মধ্যক = '],
+    [/^Mode = /, 'প্রচুরক = '],
+    [/^Population variance = /, 'জনসমষ্টির ভেদাঙ্ক = '],
+    [/^Population standard deviation = /, 'জনসমষ্টির প্রমিত বিচ্যুতি = '],
+    [/^Permutation: /, 'বিন্যাসের সূত্র: '],
+    [/^Combination: /, 'সমাবেশের সূত্র: '],
+    [/^Permutation counts arrangements; combination counts selections\./, 'বিন্যাসে ক্রম গুরুত্বপূর্ণ, সমাবেশে ক্রম গুরুত্বপূর্ণ নয়।'],
+    [/^Simple interest = /, 'সরল সুদ = '],
+    [/^Amount = /, 'মোট পরিমাণ = '],
+    [/^Cost price = /, 'ক্রয়মূল্য = '],
+    [/^Difference = /, 'পার্থক্য = '],
+    [/^Profit percentage = /, 'লাভের শতকরা হার = '],
+    [/^Loss percentage = /, 'ক্ষতির শতকরা হার = '],
+    [/^Midpoint formula: /, 'মধ্যবিন্দুর সূত্র: '],
+    [/^False position: /, 'রেগুলা-ফলসি সূত্র: '],
+    [/^After each step, retain the interval where the function changes sign\./, 'প্রতিটি ধাপে যেখানে ফাংশনের চিহ্ন পরিবর্তন হয়, সেই পরিসর রাখুন।'],
+    [/^Stopping tolerance = /, 'ত্রুটির সহনীয় সীমা = '],
+    [/^Converged within tolerance\./, 'নির্ধারিত ত্রুটির সীমার মধ্যে সমাধান পাওয়া গেছে।'],
+    [/^Iteration limit reached.*$/, 'সর্বোচ্চ iteration শেষ হয়েছে; আরও নির্ভুলতার জন্য বেশি iteration চেষ্টা করুন।'],
+    [/^Newton update: /, 'নিউটন–রাফসনের মূল সূত্র: '],
+    [/^The derivative is approximated numerically by a central difference\./, 'কেন্দ্রীয় পার্থক্য ব্যবহার করে অন্তরকের আনুমানিক মান হিসাব করা হয়।'],
+    [/^Secant: /, 'সেক্যান্ট পদ্ধতির সূত্র: '],
+    [/^It needs two initial points but no derivative\./, 'এতে দুটি প্রাথমিক অনুমান লাগে, তবে অন্তরক বের করতে হয় না।'],
+    [/^Swap R(\d+) and R(\d+)\.$/, (_all,a,b)=>`সারি R${a} এবং R${b} অদলবদল করি।`],
+    [/^Normalize pivot row R(\d+)\.$/, (_all,a)=>`প্রধান সারি R${a}-কে প্রধান সহগ দিয়ে ভাগ করে ১ করি।`],
+    [/^Back-substitute from the last row to obtain each variable\./, 'শেষ সারি থেকে আগের সারিতে মান বসিয়ে প্রতিটি চলকের মান পাই।'],
+    [/^Reduced row-echelon form gives the variables directly\./, 'সারি-সোপান রূপে পরিচয় ম্যাট্রিক্স হলে প্রতিটি চলকের মান সরাসরি পাওয়া যায়।'],
+    [/^Partial pivoting selects the largest available pivot to improve stability\./, 'বড় মানের pivot নির্বাচন করলে গণনার স্থিতিশীলতা বাড়ে।'],
+    [/^Gauss-Seidel immediately uses new values as they are found\./, 'গাউস–সাইডেলে নতুন মান পাওয়া মাত্র পরের হিসাবেই ব্যবহার করি।'],
+    [/^Jacobi computes all new values from the previous iteration\./, 'জ্যাকোবিতে আগের iteration-এর মান দিয়ে পরের সব মান হিসাব করি।'],
+    [/^The system is strictly diagonally dominant.*$/, 'ম্যাট্রিক্সটি কঠোরভাবে কর্ণ-প্রধান; তাই এই iterative পদ্ধতি অভিসারী হবে।'],
+    [/^Warning: matrix is not strictly diagonally dominant.*$/, 'সতর্কতা: ম্যাট্রিক্সটি কঠোরভাবে কর্ণ-প্রধান নয়, তাই অভিসরণ নিশ্চিত নয়।'],
+    [/^Equal spacing h = /, 'সমান ব্যবধান h = '],
+    [/^Use the first entry in each forward difference order\./, 'প্রতিটি অগ্রবর্তী পার্থক্য স্তরের প্রথম মান ব্যবহার করি।'],
+    [/^Use the last entry in each backward difference order\./, 'প্রতিটি পশ্চাৎবর্তী পার্থক্য স্তরের শেষ মান ব্যবহার করি।'],
+    [/^Sum the difference terms with the appropriate Newton polynomial weights\./, 'নিউটনের বহুপদীর সহগ ব্যবহার করে প্রতিটি পার্থক্য-পদ যোগ করি।'],
+    [/^Lagrange formula: /, 'ল্যাগ্রাঞ্জের সূত্র: '],
+    [/^Compute one basis polynomial for each point and add all contributions\./, 'প্রতিটি ডেটা বিন্দুর বহুপদী পদ হিসাব করে সব যোগ করি।'],
+    [/^Distinct x-coordinates are required\./, 'সব x-এর মান আলাদা হতে হবে।'],
+    [/^Interval: /, 'সমাকলনের সীমা: '],
+    [/^Step size h = /, 'ধাপের দৈর্ঘ্য h = '],
+    [/^Weights: /, 'সহগগুলো: '],
+    [/^Weighted sum = /, 'সহগ দিয়ে গুণ করে যোগফল = '],
+    [/^Answer = /, 'চূড়ান্ত উত্তর = '],
+    [/^Initial condition /, 'প্রারম্ভিক শর্ত: '],
+    [/^Euler update: /, 'ইউলারের সূত্র: '],
+    [/^RK4 uses four slopes.*$/, 'RK4 পদ্ধতিতে চারটি ঢাল (k₁, k₂, k₃, k₄) নির্ণয় করে নির্দিষ্ট অনুপাতে যোগ করি।'],
+    [/^Euler is first-order.*$/, 'ইউলারের পদ্ধতি প্রথম ক্রমের; ছোট h নিলে সাধারণত নির্ভুলতা বাড়ে।'],
+    [/^RK4 is fourth-order.*$/, 'RK4 চতুর্থ ক্রমের; একই h-তে সাধারণত ইউলারের চেয়ে বেশি নির্ভুল।'],
+    [/^Final y ≈ /, 'শেষের আনুমানিক y ≈ '],
+    [/^Input: /, 'দেওয়া ইনপুট: '],
+    [/^Integer positional expansion: /, 'স্থানীয় মানে বিশ্লেষণ: '],
+    [/^Integer part in decimal: /, 'দশমিকে পূর্ণসংখ্যার অংশ: '],
+    [/^Fractional part uses negative powers: /, 'ভগ্নাংশের অঙ্কে ঋণাত্মক ঘাত ব্যবহার করি: '],
+    [/^No fractional digits\./, 'ভগ্নাংশের অঙ্ক নেই।'],
+    [/^Integer conversion:.*$/, 'পূর্ণসংখ্যাকে নতুন ভিত্তি দিয়ে বারবার ভাগ করি এবং ভাগশেষ বিপরীত ক্রমে লিখি।'],
+    [/^Fractional conversion:.*$/, 'ভগ্নাংশকে নতুন ভিত্তি দিয়ে বারবার গুণ করে পূর্ণ অংশের অঙ্ক সংগ্রহ করি।'],
+    [/^Fractional outputs are limited.*$/, 'ভগ্নাংশের সর্বোচ্চ ১৮টি অঙ্ক দেখানো হয়; … থাকলে রূপান্তর এখনও অসম্পূর্ণ।']
+  ];
+  for(const [pattern, replacement] of rules)if(pattern.test(step))return step.replace(pattern,replacement);
+  return step;
+}
+
+// === tutor.js ===
+
+
+
+const isBangla=lang=>lang==='bn';
+const reply=(en,bn,lang)=>isBangla(lang)?bn:en;
+const clean=n=>fmt(n);
+const asSteps=(result,lang,detailed=true)=> {
+  const answer=reply('**Answer:** ','**উত্তর:** ',lang)+result.answer;
+  if(!detailed)return answer;
+  const heading=reply('\n\n**Step-by-step explanation**\n','\n\n**ধাপে ধাপে ব্যাখ্যা**\n',lang);
+  return answer+heading+result.steps.map((s,i)=>`${i+1}. ${isBangla(lang)?translateStepBN(s):s}`).join('\n');
+};
+const localizedTopic=(topic,lang,detailed)=> {
+  const bn=isBangla(lang);
+  const title=bn?`${topic.bn} (${topic.en})`:`${topic.en} (${topic.bn})`;
+  let content=`### ${title}\n\n${bn?topic.descriptionBn:topic.descriptionEn}\n\n**${bn?'মূল নিয়ম / সূত্র':'Key idea / formula'}:** ${topic.formula}\n\n**${bn?'উদাহরণ':'Example'}:** ${topic.example}`;
+  if(detailed)content+=bn?'\n\n**সহজে বুঝি:** আগে ধারণাটি বুঝুন, তারপর সূত্রে মান বসিয়ে হিসাব করুন। শেষে উত্তর যাচাই করুন।':'\n\n**Think about it:** Identify what is given, choose the formula, substitute the values and check the result.';
+  if(topic.group==='numerical')content+=bn?'\n\nসংখ্যাতাত্ত্বিক ল্যাব থেকে নিজের মান বসিয়ে সব iteration দেখতে পারবেন।':'\n\nOpen the Numerical Lab to enter your own values and see every iteration.';
+  return content;
+};
+const detectBase=txt=>{const s=txt.toLowerCase();if(s.includes('binary')||s.includes('বাইনারি'))return 2;if(s.includes('octal')||s.includes('অক্টাল'))return 8;if(s.includes('hex')||s.includes('হেক্স'))return 16;if(s.includes('decimal')||s.includes('দশমিক'))return 10;return null;};
+function expandLast(last,lang) {
+  if(!last)return null;
+  return isBangla(lang)?`আগের ব্যাখ্যাটি আরও সহজভাবে বলি:\n\n${last}\n\n**মনে রাখবেন:** কোন সংখ্যা দেওয়া আছে, কী বের করতে হবে, কোন সূত্র লাগবে এবং উত্তর সঠিক কি না—এই চারটি ধাপ অনুসরণ করুন।`:`Let me explain the previous answer more simply:\n\n${last}\n\n**Study tip:** Write down the known values, identify what you need to find, choose the formula, and verify the answer.`;
+}
+function localTutor(question,lang='en',detailed=true,previousAnswer='') {
+  const raw=westernDigits(question).trim();const lower=raw.toLowerCase();
+  if(!raw)return reply('Type your question first.','প্রথমে আপনার প্রশ্নটি লিখুন।',lang);
+  if(/^(hi|hello|hey|assalam|হাই|হ্যালো|সালাম|ধন্যবাদ|thanks|thank you)[\s!?.]*$/i.test(raw))return reply('Hi there! 👋 I’m Shikhi. Ask me a math or ICT question, or tell me a topic you want to learn. Try **25% of 480**, **2x + 5 = 15**, or **binary 1011 to decimal**.','হ্যালো! 👋 আমি শিখি। গণিত বা আইসিটি নিয়ে যেকোনো প্রশ্ন করুন। যেমন **৪৮০-এর ২৫%**, **2x + 5 = 15**, বা **1011 বাইনারি থেকে দশমিক**।',lang);
+  if(/^(explain (it|again)|more details|explain simply|why|বিস্তারিত|আরও বুঝিয়ে|সহজ করে|কেন)[\s?.!]*$/i.test(raw))return expandLast(previousAnswer,lang)||reply('Which topic or answer would you like me to explain?','কোন বিষয় বা উত্তরটি আরও ব্যাখ্যা করব?',lang);
+  try {
+    const spokenPercent=lower.match(/(-?\d+(?:\.\d+)?)\s*(?:percent|percentage|শতাংশ|শতকরা)\s*(?:of|এর)\s*(-?\d+(?:\.\d+)?)/i);
+    if(spokenPercent) return asSteps(solveMathTool('percentage',{percent:spokenPercent[1],whole:spokenPercent[2]}),lang,detailed);
+    const pct=lower.match(/(-?\d+(?:\.\d+)?)\s*%\s*(?:of|এর|×|\*|from)\s*(-?\d+(?:\.\d+)?)/i)
+        || lower.match(/(-?\d+(?:\.\d+)?)\s*(?:এর|of)\s*(-?\d+(?:\.\d+)?)\s*(?:%|percent|শতাংশ|শতকরা)/i);
+    if(pct) {const percent= lower.indexOf('%')>=0&&lower.indexOf('%')<lower.indexOf('of')?pct[1]:/\bof\b/i.test(lower)&&lower.indexOf('%')>=0&&lower.indexOf('%')<lower.indexOf('of')?pct[1]:lower.includes('এর')||lower.includes(' of ')?pct[2]:pct[1];const whole=percent===pct[1]?pct[2]:pct[1];return asSteps(solveMathTool('percentage',{percent,whole}),lang,detailed);}
+    if(/(\b(lcm|hcf|gcd)\b|লসাগু|গসাগু)/i.test(lower)) {
+      const extracted=lower.match(/-?\d+(?:\.\d+)?/g);if(extracted?.length>=2)return asSteps(solveMathTool('gcd',{numbers:extracted.join(',')}),lang,detailed);
+    }
+    const prime=lower.match(/(?:is\s+|whether\s+|number\s+)?(\d+)\s*(?:a\s+)?(?:prime|মৌলিক)/i)||lower.match(/(?:prime|মৌলিক)\s*(?:number)?\s*(\d+)/i);
+    if(prime) {const n=Number(prime[1]),yes=primeCheck(n);return reply(`**${n} is ${yes?'a prime':'not a prime'} number.**\n\n${yes?'It has exactly two positive divisors: 1 and itself.':'It is either less than 2 or has a divisor besides 1 and itself.'}`,`**${n} ${yes?'একটি মৌলিক সংখ্যা':'মৌলিক সংখ্যা নয়'}।**\n\n${yes?'এর ধনাত্মক গুণনীয়ক কেবল ১ ও নিজে।':'এটি ২-এর ছোট অথবা এর অন্য গুণনীয়ক আছে।'}`,lang);}
+    const fac=lower.match(/(?:factorial\s*(?:of)?\s*|ফ্যাক্টোরিয়াল\s*)(\d+)/i)||lower.match(/\b(\d{1,3})\s*!/);
+    if(fac) {const n=Number(fac[1]),f=factorial(n);return reply(`**${n}! = ${fmt(f)}**\n\n${n<=1?'By definition, 0! = 1 and 1! = 1.':`Multiply integers 1 through ${n}: ${n} × ${n-1} × … × 1.`}`,`**${n}! = ${fmt(f)}**\n\n${n<=1?'সংজ্ঞা অনুযায়ী 0! = 1 এবং 1! = 1।':`১ থেকে ${n} পর্যন্ত সব পূর্ণসংখ্যা গুণ করতে হয়।`}`,lang);}
+    if(/(binary|octal|hexadecimal|hex|decimal|বাইনারি|অক্টাল|হেক্স|দশমিক)/i.test(lower) && /(to|into|থেকে|রূপান্তর|convert)/i.test(lower)) {
+      const num=raw.match(/(?:^|\s)([+-]?[0-9A-F]+(?:\.[0-9A-F]+)?)(?=\s|$)/i)?.[1]||raw.match(/([01]{2,})/)?.[1];
+      const sourceSegment=lower.split(/\s+(?:to|into|থেকে|রূপান্তর)/i)[0];
+      const from=detectBase(sourceSegment)||detectBase(lower)||2;
+      if(num){const r=convertBase(num,from);return reply(`**Number conversion (base ${from})**\n\n${Object.entries(r.conversions).map(([b,v])=>`- Base ${b}: **${v}**`).join('\n')}\n\n${detailed?r.explanation.join('\n\n'):''}`,`**সংখ্যা রূপান্তর (${from} ভিত্তি)**\n\n${Object.entries(r.conversions).map(([b,v])=>`- ভিত্তি ${b}: **${v}**`).join('\n')}\n\n${detailed?r.explanation.join('\n\n'):''}`,lang);}
+    }
+    if(/(?:average|mean|median|mode|গড়|মধ্যক|প্রচুরক)/i.test(lower)) {
+      const values=lower.match(/-?\d+(?:\.\d+)?/g);if(values?.length>=2) return asSteps(solveMathTool('statistics',{numbers:values.join(',')}),lang,detailed);
+    }
+    const ratio=lower.match(/(?:ratio\s+of\s*|অনুপাত\s*)(\d+)\s*(?:and|to|:|ও|,)\s*(\d+)/i);
+    if(ratio)return asSteps(solveMathTool('ratio',{a:ratio[1],b:ratio[2]}),lang,detailed);
+    const nth=lower.match(/(?:sqrt|square root|বর্গমূল)\s*(?:of)?\s*\(?\s*(\d+(?:\.\d+)?)/i);
+    if(nth) {const n=Number(nth[1]),x=Math.sqrt(n);return reply(`**√${n} = ${fmt(x)}**\n\nCheck: ${fmt(x)} × ${fmt(x)} ≈ ${n}.`,`**√${n} = ${fmt(x)}**\n\nযাচাই: ${fmt(x)} × ${fmt(x)} ≈ ${n}।`,lang);}
+    const topic=findTopic(lower);
+    const equation=lower.match(/(?:[\dx+*/^().\s−-]+=[\dx+*/^().\s−-]+)/i);
+    if(equation&&/[x]/i.test(equation[0]))return asSteps(solveEquation(equation[0]),lang,detailed);
+    if(/(?:solve|সমাধান|equation|সমীকরণ)/i.test(lower)&&lower.includes('=')&&lower.includes('x')) {
+      const eq=raw.replace(/^(?:solve|সমাধান|সমীকরণ)\s*:?(?:\s+for\s+x)?\s*/i,'').trim();return asSteps(solveEquation(eq),lang,detailed);
+    }
+    // Allow questions like "what is 12 * 7" and direct mathematical expressions.
+    const stripped=raw.replace(/^(?:what is|calculate|evaluate|compute|find|কত হবে|হিসাব করো|নির্ণয় করো|মান বের করো|কত|এর মান)\s*:??\s*/i,'').replace(/[?？]$/,'').trim();
+    if(/^[0-9০-৯a-zA-Z+*/^().%\s−÷×π²³-]+$/.test(stripped)&& /\d|[০-৯]/.test(stripped)) {
+      try { const value=evaluateExpression(stripped);return reply(`**Answer: ${clean(value)}**\n\n${detailed?`1. Write the expression: ${normalizeMath(stripped)}\n2. Follow the order of operations (brackets, exponents, multiplication/division, addition/subtraction).\n3. The result is **${clean(value)}**.`:''}`,`**উত্তর: ${clean(value)}**\n\n${detailed?`১. রাশি: ${normalizeMath(stripped)}\n২. প্রথমে বন্ধনী, তারপর ঘাত, গুণ/ভাগ এবং যোগ/বিয়োগ করুন।\n৩. ফলাফল **${clean(value)}**।`:''}`,lang); }catch(e) {if(/[+*/^%]/.test(stripped))return reply(`**Cannot calculate:** ${e.message}`,`**হিসাব করা যাচ্ছে না:** ${e.message}`,lang);} 
+    }
+    if(topic)return localizedTopic(topic,lang,detailed);
+    // A nonnumeric topic lookup covers exact keyword search rather than fabricating solutions.
+    const terms=lower.split(/\s+/).filter(s=>s.length>4);
+    const matches=topics.filter(t=>terms.some(term=>t.en.toLowerCase().includes(term) || t.bn.includes(term))).slice(0,3);
+    if(matches.length===1)return localizedTopic(matches[0],lang,detailed);
+    return reply('I can already explain the full **Math & ICT topic library**, solve expressions and linear/quadratic equations, calculate percentages, statistics, LCM/HCF, and convert number systems. For an unrestricted or lengthy word problem, connect the **AI Tutor** in Settings. You can also send a specific equation like `2x + 5 = 15` or use the **Numerical Lab** for iterative methods.','আমি **গণিত ও আইসিটির সব বিষয়** সহজভাবে বুঝাতে পারি, গাণিতিক রাশি ও সমীকরণ সমাধান, শতকরা, পরিসংখ্যান, লসাগু/গসাগু এবং সংখ্যা পদ্ধতি রূপান্তর করতে পারি। জটিল বা বড় কথার অঙ্কের জন্য Settings থেকে **AI Tutor** সংযুক্ত করুন। যেমন `2x + 5 = 15` লিখুন অথবা iteration দেখার জন্য **Numerical Lab** ব্যবহার করুন।',lang);
+  } catch(error) {
+    return reply(`Let's adjust that input: **${error.message}**\n\nTry writing the values more clearly, or open the appropriate calculator.`,`ইনপুটটি একটু ঠিক করুন: **${error.message}**\n\nমানগুলো স্পষ্ট করে লিখুন বা উপযুক্ত ক্যালকুলেটর ব্যবহার করুন।`,lang);
+  }
+}
+
+// === practice.js ===
+
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const shuffle=list=>[...list].sort(()=>Math.random()-0.5);
+const numericQuestion=(question,correct,explanation,unit='')=>{
+  const n=Number(correct),str=String(correct)+unit;
+  let choices=new Set([str]);let tries=0;
+  while(choices.size<4 && tries++<100){const offset=[-3,-2,-1,1,2,3,4,5,10,-10][rand(0,9)];const val=n+offset;if(val>=0||n<0)choices.add(String(val)+unit);}
+  return {question,options:shuffle([...choices].slice(0,4)),answer:str,explanation};
+};
+const choice=(question,answer,options,explanation)=>({question,answer,options:shuffle([answer,...options]),explanation});
+function createQuiz(category='basics',difficulty='easy') {
+  const hard=difficulty==='hard';const questions=[];
+  for(let i=0;i<5;i++) {
+    const a=rand(hard?11:2,hard?40:15),b=rand(2,hard?25:12);
+    let q;
+    if(category==='basics') {
+      const type=i%5;
+      if(type===0)q=numericQuestion(`${a} + ${b} = ?`,a+b,`Add ${a} and ${b} to get ${a+b}.`);
+      if(type===1)q=numericQuestion(`${a+b} − ${b} = ?`,a,`Subtract ${b} from ${a+b} to get ${a}.`);
+      if(type===2)q=numericQuestion(`${a} × ${b} = ?`,a*b,`Multiplication means repeated addition: ${a} × ${b} = ${a*b}.`);
+      if(type===3)q=numericQuestion(`${a*b} ÷ ${a} = ?`,b,`Since ${a} × ${b} = ${a*b}, division gives ${b}.`);
+      if(type===4)q=choice(`Is ${a*2} even or odd?`,'Even',['Odd','Prime','Neither'],`${a*2} is divisible by 2, so it is even.`);
+    }
+    if(category==='algebra') {
+      const type=i%5;
+      if(type===0)q=numericQuestion(`Solve: ${a}x + ${b} = ${a*3+b}. Find x.`,3,`Subtract ${b}, then divide by ${a}. x = 3.`);
+      if(type===1)q=numericQuestion(`What is ${b*5}% of ${a*20}?`,a*b,`${b*5}/100 × ${a*20} = ${a*b}.`);
+      if(type===2)q=numericQuestion(`Find the HCF of ${a*2} and ${a*3}.`,a,`HCF(${a*2}, ${a*3}) = ${a}.`);
+      if(type===3)q=numericQuestion(`A product costs ${a*10} and sells for ${a*10+b}. Profit?`,b,`Profit = selling price − cost price = ${b}.`);
+      if(type===4)q=numericQuestion(`If 4 notebooks cost ${a*4}, what do 7 cost?`,a*7,`One notebook costs ${a}; 7 cost ${a*7}.`);
+    }
+    if(category==='geometry') {
+      const type=i%5;
+      if(type===0)q=numericQuestion(`Area of a rectangle with length ${a}, width ${b}?`,a*b,`Area = length × width = ${a*b}.`);
+      if(type===1)q=numericQuestion(`Perimeter of a square with side ${a}?`,4*a,`Perimeter = 4 × ${a} = ${4*a}.`);
+      if(type===2)q=numericQuestion(`A triangle has base ${a*2} and height ${b}. Area?`,a*b,`Area = ½ × ${a*2} × ${b} = ${a*b}.`);
+      if(type===3)q=choice('How many degrees are in a right angle?','90°',['45°','180°','360°'],'A right angle measures exactly 90°.');
+      if(type===4)q=numericQuestion(`A circle has radius ${a}. What is its diameter?`,2*a,`Diameter = 2 × radius = ${2*a}.`);
+    }
+    if(category==='higher') {
+      const type=i%5;
+      if(type===0)q=numericQuestion(`Find the mean of ${a}, ${a+2}, ${a+4}.`,a+2,`Mean = (${a}+${a+2}+${a+4})/3 = ${a+2}.`);
+      if(type===1)q=numericQuestion(`Find the median: ${a}, ${a+6}, ${a+2}.`,a+2,`Sort the numbers: ${a}, ${a+2}, ${a+6}. Middle = ${a+2}.`);
+      if(type===2)q=numericQuestion(`How many ways to select 2 from 5? 5C2 = ?`,10,'5C2 = 5! / (2!3!) = 10.');
+      if(type===3)q=choice('Probability of rolling an even number with a fair die?','1/2',['1/3','1/6','2/3'],'Even outcomes: 2, 4, 6, so 3/6 = 1/2.');
+      if(type===4)q=numericQuestion(`If f(x)=x², what is f′(${b})?`,2*b,`f′(x)=2x, hence f′(${b})=${2*b}.`);
+    }
+    if(category==='ict') {
+      const value=rand(5,hard?255:31);
+      const options={
+        0: {base:2,label:'binary'},1:{base:8,label:'octal'},2:{base:16,label:'hexadecimal'},3:{base:2,label:'binary'},4:{base:16,label:'hexadecimal'}
+      }[i];
+      const correct=convertBase(String(value),10).conversions[options.base];
+      const wrong=new Set();for(let d=1;d<9;d++){const v=convertBase(String(value+d),10).conversions[options.base];if(v!==correct)wrong.add(v);}
+      q=choice(`Convert ${value} (decimal) to ${options.label}.`,correct,[...wrong].slice(0,3),`Convert decimal ${value} by repeated division by ${options.base}. The answer is ${correct}.`);
+    }
+    if(category==='numerical') {
+      const options=[
+        ['Which method repeatedly halves a bracket containing a root?','Bisection',['Secant','Euler','Jacobi'],'Bisection always selects the midpoint of a sign-changing bracket.'],
+        ["Simpson's 1/3 rule requires the number of subintervals to be…",'Even',['Odd','A multiple of 3','Always 1'],'The 1/3 rule needs n divisible by 2.'],
+        ['Which method solves an ODE using four weighted slopes?','RK4',['Euler','Bisection','Gauss–Jordan'],'Fourth-order Runge–Kutta uses k₁, k₂, k₃ and k₄.'],
+        ['Which method uses newly updated values immediately?','Gauss–Seidel',['Jacobi','Lagrange','Trapezoidal'],'Gauss–Seidel updates each variable in place.'],
+        ['Which interpolation works with unevenly spaced x-values?','Lagrange',['Newton forward','Newton backward','Trapezoidal'],'Lagrange interpolation accepts distinct, unequally spaced x-values.']
+      ];q=choice(...options[i]);
+    }
+    questions.push(q);
+  }
+  return questions;
+}
+
+// === app.js ===
+
+
+
+
+
+
+const $=sel=>document.querySelector(sel);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const iconPaths={
+ home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+ 'book-open':'<path d="M12 7v14M3 18V5a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3 3 3 0 0 1 3-3h4a2 2 0 0 1 2 2v13h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+ message:'<path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5A8.4 8.4 0 0 1 8 18.7L3 21l1.3-5A8.4 8.4 0 1 1 21 11.5Z"/>',
+ calculator:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h1m4 0h1M8 15h1m4 0h1M8 19h1m4 0h1"/>',
+ binary:'<rect x="3" y="4" width="8" height="16" rx="3"/><path d="M7 8v8m6-8h8m-8 8h8M17 4v16"/>',
+ flask:'<path d="M9 3h6m-5 0v7l-5 8a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-8V3M8 15h8"/>',
+ target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+ chart:'<path d="M4 20V4m0 16h17M8 15l4-4 3 2 5-7"/>',
+ settings:'<circle cx="12" cy="12" r="3"/><path d="M20 12a8 8 0 0 0-.2-1.7l2-1.5-2-3.5-2.3.9a8 8 0 0 0-3-1.7L14 2h-4l-.5 2.5a8 8 0 0 0-3 1.7l-2.3-.9-2 3.5 2 1.5a8 8 0 0 0 0 3.4l-2 1.5 2 3.5 2.3-.9a8 8 0 0 0 3 1.7L10 22h4l.5-2.5a8 8 0 0 0 3-1.7l2.3.9 2-3.5-2-1.5A8 8 0 0 0 20 12Z"/>',
+ search:'<circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ moon:'<path d="M20.5 14.1A9 9 0 0 1 9.9 3.5 9 9 0 1 0 20.5 14.1Z"/>',
+ menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+ x:'<path d="M5 5l14 14M19 5 5 19"/>',
+ right:'<path d="M5 12h14m-6-6 6 6-6 6"/>',
+ chevron:'<path d="m9 5 7 7-7 7"/>',
+ check:'<path d="m5 12 4 4L19 6"/>',
+ copy:'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
+ refresh:'<path d="M20 11A8 8 0 0 0 6 5L4 7m0-4v4h4M4 13a8 8 0 0 0 14 6l2-2m0 4v-4h-4"/>',
+ sparkles:'<path d="m12 2 2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Zm7 16 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2"/>',
+ award:'<circle cx="12" cy="8" r="5"/><path d="m8 12-2 9 6-3 6 3-2-9"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>',
+ send:'<path d="m22 2-7.5 20-3.5-9-9-3.5L22 2Zm0 0L11 13"/>',
+ info:'<circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10v.5"/>',
+ 'arrow-left':'<path d="m11 5-7 7 7 7m-7-7h16"/>',
+ play:'<path d="m8 5 11 7-11 7z"/>',
+ lightbulb:'<path d="M9 18h6m-5 3h4M9 15a7 7 0 1 1 6 0c-.5.5-1 2-1 3h-4c0-1-.5-2.5-1-3Z"/>',
+ sigma:'<path d="M19 4H6l7 8-7 8h13"/>',
+ shapes:'<circle cx="7" cy="7" r="4"/><rect x="12" y="12" width="9" height="9" rx="1"/><path d="m4 21 5-9 5 9z"/>',
+ bookmark:'<path d="M6 3h12v18l-6-4-6 4z"/>',
+ layers:'<path d="m12 3 9 5-9 5-9-5 9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/>',
+ percent:'<path d="m19 5-14 14"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/>',
+ shield:'<path d="m12 2 9 4v6c0 5-3 8-9 10-6-2-9-5-9-10V6l9-4Zm-4 10 3 3 5-6"/>',
+ trash:'<path d="M4 7h16M10 3h4m-8 4 1 14h10l1-14M10 11v6m4-6v6"/>',
+ download:'<path d="M12 3v13m-5-5 5 5 5-5M4 19h16"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 22a8 8 0 0 1 16 0"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ help:'<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 5m.1 3v.5"/>'
+};
+const icon=(name,size=19)=>`<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPaths[name]||iconPaths.sparkles}</svg>`;
+const bilingual=(en,bn)=>state.lang==='bn'?bn:en;
+const t=(en,bn)=>bilingual(en,bn);
+const nameOf=(item)=>state.lang==='bn'?item.bn:item.en;
+const mixedName=(item)=>state.lang==='bn'?`${item.bn} · ${item.en}`:`${item.en} · ${item.bn}`;
+const storageKey='shikhi:settings:v1';
+function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey))||{};}catch{return {};}}
+const saved=readSaved();
+const state={
+ lang:saved.lang==='bn'?'bn':'en',theme:saved.theme==='dark'?'dark':'light',
+ learned:new Set(saved.learned||[]), solvedCount:Number(saved.solvedCount)||0,
+ totalCorrect:Number(saved.totalCorrect)||0,totalAttempted:Number(saved.totalAttempted)||0,
+ quizSessions:Number(saved.quizSessions)||0,streak:Number(saved.streak)||0,lastActivity:saved.lastActivity||'',
+ chats:Array.isArray(saved.chats)?saved.chats.slice(-50):[],
+ page:'home',openMenu:false,modal:null,confirmAction:'',globalSearch:'',topicSearch:'',topicGroup:'all',visibleTopics:24,
+ tool:'math',mathMode:'expression',mathForm:{expression:'(24 + 6) / 3',equation:'2x + 5 = 15',percent:'25',whole:'480',fractionA:'3/4',fractionB:'1/2',operation:'+',a:'12',b:'8',c:'4',numbers:'12, 18, 30',shape:'rectangle',n:'5',r:'2',p:'1000',t:'2',cp:'100',sp:'125',count:'5',total:'200',want:'8',favorable:'3',angle:'30',angleUnit:'deg',trigFunc:'sin',function:'x^2 + 3x',x0:'2'},mathResult:null,
+ converterForm:{value:'101101',from:'2'},converterResult:null,
+ numericalFamily:'roots',numericalMethod:'bisection',numericalForms:{
+ roots:{function:'x^3 - x - 2',a:'1',b:'2',x0:'1.5',x1:'2',tolerance:'0.000001',maxIter:'25'},
+ linear:{matrix:'4,1|6\n1,3|7',tolerance:'0.000001',maxIter:'25'},
+ interpolation:{points:'0,1\n1,2\n2,5\n3,10',queryX:'1.5'},
+ integration:{function:'x^2',a:'0',b:'1',n:'6'},
+ ode:{function:'x+y',x0:'0',y0:'1',target:'1',h:'0.1'}
+ },numericalResult:null,practiceGroup:'basics',practiceDifficulty:'easy',quiz:null,
+ detailed:saved.detailed!==false,aiEnabled:false,aiChecked:false,chatLoading:false
+};
+function save(){const data={lang:state.lang,theme:state.theme,learned:[...state.learned],solvedCount:state.solvedCount,totalCorrect:state.totalCorrect,totalAttempted:state.totalAttempted,quizSessions:state.quizSessions,streak:state.streak,lastActivity:state.lastActivity,chats:state.chats.slice(-50),detailed:state.detailed};try{localStorage.setItem(storageKey,JSON.stringify(data));}catch{}}
+function recordActivity(){const today=new Date().toLocaleDateString('en-CA');if(today===state.lastActivity)return;const yesterday=new Date(Date.now()-86400000).toLocaleDateString('en-CA');state.streak=today===state.lastActivity?state.streak:state.lastActivity===yesterday?state.streak+1:1;state.lastActivity=today;save();}
+function accuracy(){return state.totalAttempted?Math.round(100*state.totalCorrect/state.totalAttempted):0;}
+function renderInline(source){return esc(source).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');}
+function renderMarkdown(text){return String(text||'').split('\n').map(line=>{if(!line.trim())return '<div style="height:5px"></div>';if(/^###\s+/.test(line))return `<h3>${renderInline(line.replace(/^###\s+/,''))}</h3>`;if(/^[-•]\s+/.test(line))return `<span class="msg-list-item">• ${renderInline(line.replace(/^[-•]\s+/,''))}</span>`;if(/^\d+[.)]\s+/.test(line))return `<span class="msg-list-item">${renderInline(line)}</span>`;return `<p>${renderInline(line)}</p>`;}).join('');}
+function progressBar(p){return `<div class="mini-track"><span style="width:${Math.min(100,Math.max(0,p))}%"></span></div>`;}
+const primaryNav=[['home','home','Overview','হোম'],['tutor','message','AI Tutor Chat','টিউটর চ্যাট'],['topics','book-open','Topic Library','বিষয়সমূহ'],['tools','calculator','Solve & Calculate','ক্যালকুলেটর'],['practice','target','Practice Zone','অনুশীলন']];
+const extraNav=[['progress','chart','My Progress','আমার অগ্রগতি'],['settings','settings','Settings','সেটিংস']];
+function sidebarNav(item){const [id,ico,en,bn]=item;return `<button type="button" class="nav-btn ${state.page===id?'active':''}" data-nav="${id}">${icon(ico,18)}<span>${t(en,bn)}</span>${state.page===id?`<span class="nav-arrow">${icon('chevron',13)}</span>`:''}</button>`;}
+function renderShell(){return `
+<div class="sidebar-backdrop ${state.openMenu?'open':''}" data-action="close-menu"></div>
+<aside class="sidebar ${state.openMenu?'open':''}" aria-label="Primary navigation">
+ <a href="#home" class="brand" data-nav="home"><div class="brand-symbol">+</div><div><div class="brand-name">Shikhi<span>.</span> <small style="font-size:14px;color:#6ee2cb">শিখি</small></div><div class="brand-tag">MATH & ICT STUDIO</div></div></a>
+ <div class="nav-heading">${t('YOUR SPACE','আপনার জায়গা')}</div><nav class="side-nav">${primaryNav.map(sidebarNav).join('')}</nav>
+ <div class="nav-heading">${t('PERSONAL','ব্যক্তিগত')}</div><nav class="side-nav">${extraNav.map(sidebarNav).join('')}</nav>
+ <div class="sidebar-spacer"></div>
+ <div class="sidebar-promo"><div class="promo-emoji">${icon('sparkles',19)}</div><h4>${t('A little practice, every day.','প্রতিদিন একটু অনুশীলন।')}</h4><p>${t('Build confidence one question at a time. Your progress stays saved.','একটি করে প্রশ্ন সমাধান করে আত্মবিশ্বাস বাড়ান। অগ্রগতি সংরক্ষিত থাকে।')}</p><button data-nav="practice">${t('Start practicing','অনুশীলন শুরু করুন')} ${icon('right',14)}</button></div>
+ <div class="sidebar-footer"><div class="sidebar-avatar">S</div><div><div class="user-name">${t('My learning space','আমার শেখার জায়গা')}</div><div class="user-meta">${t('Personal study studio','ব্যক্তিগত স্টাডি স্টুডিও')}</div></div><button title="Settings" class="settings-link" data-nav="settings">${icon('settings',17)}</button></div>
+</aside>
+<div class="main-shell"><header class="topbar"><div class="top-left"><button class="icon-btn menu-trigger" aria-label="Open menu" data-action="toggle-menu">${icon('menu',20)}</button><div class="breadcrumb"><span>${t('Learning Studio','লার্নিং স্টুডিও')}</span>${icon('chevron',12)}<strong>${pageName()}</strong></div></div>
+ <div class="top-actions"><button class="search-trigger" data-action="search-modal" aria-label="Search topics">${icon('search',16)}<span>${t('Search a topic...','বিষয় খুঁজুন...')}</span><kbd>Ctrl K</kbd></button><button class="icon-btn" data-action="toggle-theme" title="${t('Switch theme','থিম পরিবর্তন করুন')}">${icon(state.theme==='dark'?'sun':'moon',18)}</button><button class="lang-switch" data-action="toggle-lang" title="Change language"><span>${state.lang==='en'?'EN':'বাং'}</span> / ${state.lang==='en'?'বাং':'EN'}</button><div class="header-avatar">S</div></div></header>
+ <main class="page-wrap" id="main-content">${renderPage()}</main></div>
+ <nav class="mobile-bottom" aria-label="Mobile navigation">${[['home','home','Home','হোম'],['tutor','message','Chat','চ্যাট'],['topics','book-open','Learn','শিখুন'],['tools','calculator','Tools','টুলস'],['practice','target','Practice','প্র্যাকটিস']].map(([id,ic,en,bn])=>`<button class="mobile-nav-item ${state.page===id?'active':''}" data-nav="${id}">${icon(ic,19)}<span>${t(en,bn)}</span></button>`).join('')}</nav>
+ ${renderModal()}<div id="toast" class="toast">${icon('check',17)} <span id="toast-text"></span></div>`;
+}
+function pageName(){return t(({home:'Overview',tutor:'AI Tutor Chat',topics:'Topic Library',tools:'Math & ICT Tools',practice:'Practice Zone',progress:'My Progress',settings:'Settings'})[state.page],({home:'হোম',tutor:'টিউটর চ্যাট',topics:'বিষয়সমূহ',tools:'গণিত ও আইসিটি টুলস',practice:'অনুশীলন',progress:'অগ্রগতি',settings:'সেটিংস'})[state.page]);}
+function renderPage(){switch(state.page){case'home':return renderHome();case'tutor':return renderTutor();case'topics':return renderTopics();case'tools':return renderTools();case'practice':return renderPractice();case'progress':return renderProgress();case'settings':return renderSettings();default:return renderHome();}}
+function renderHome(){const date=new Date().toLocaleDateString(state.lang==='bn'?'bn-BD':'en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});return `
+<div class="home-greeting"><div><div class="eyebrow">${t('YOUR PERSONAL LEARNING CORNER','আপনার ব্যক্তিগত শেখার জায়গা')}</div><h1>${t('Good to see you! 👋','আবার স্বাগতম! 👋')}</h1><p>${t('Every great answer starts with a curious question.','সুন্দর উত্তরের শুরু হয় একটি কৌতূহলী প্রশ্ন থেকে।')}</p></div><div class="today-label">${esc(date)}</div></div>
+<section class="hero"><div><div class="hero-badge">${icon('sparkles',13)} ${t('YOUR SMART STUDY COMPANION','আপনার স্মার্ট পড়ার সঙ্গী')}</div><h2>${t('Math feels easier','গণিত এখন হবে')}<br><span>${t('when we learn together.','সহজ, একসাথে শিখলে।')}</span></h2><p>${t('From basic arithmetic to complex ICT numerical methods — ask, explore, practice, and truly understand every step.','সহজ যোগ-বিয়োগ থেকে আইসিটির জটিল সংখ্যাতাত্ত্বিক সমস্যা—প্রশ্ন করুন, অনুশীলন করুন, প্রতিটি ধাপ বুঝে নিন।')}</p><div class="hero-buttons"><button class="btn btn-primary" data-nav="tutor">${icon('message',16)} ${t('Ask Shikhi anything','শিখিকে প্রশ্ন করুন')}</button><button class="btn btn-secondary" data-nav="topics">${icon('book-open',16)} ${t('Explore topics','বিষয় দেখুন')}</button></div></div><div class="hero-showcase"><div class="hero-card"><div class="hc-stamp">${icon('sparkles',24)}</div><div class="hc-caption">${icon('check',13)} ${t('LET’S SOLVE TOGETHER','চলুন সমাধান করি')}</div><div class="hc-problem">2x + 5 = <strong>15</strong></div><div class="hc-line"></div><div class="hc-detail"><b>01</b> &nbsp; 2x = 15 − 5</div><div class="hc-detail"><b>02</b> &nbsp; 2x = 10</div><div class="hc-detail"><b>03</b> &nbsp; x = <strong style="color:#14a88f">5 ✓</strong></div></div></div></section>
+<div class="stats-grid"><div class="stat-card"><div class="stat-icon mint">${icon('book-open',23)}</div><div><div class="stat-value">${state.learned.size}</div><div class="stat-label">${t('Topics mastered','শেখা বিষয়')}</div></div></div><div class="stat-card"><div class="stat-icon purple">${icon('calculator',23)}</div><div><div class="stat-value">${state.solvedCount}</div><div class="stat-label">${t('Problems explored','সমাধান করা সমস্যা')}</div></div></div><div class="stat-card"><div class="stat-icon orange">${icon('target',23)}</div><div><div class="stat-value">${accuracy()}%</div><div class="stat-label">${t('Practice accuracy','অনুশীলনে সঠিক উত্তর')}</div></div></div></div>
+<div class="section-heading"><div><h2 class="section-title">${t('Jump right in','সরাসরি শুরু করুন')}</h2><p class="section-subtitle">${t('Everything you need, in one friendly place.','সব শেখার টুলস এক জায়গায়।')}</p></div></div>
+<div class="quick-grid">
+${[['calculator','Math Solver','গণিত সমাধান','Math expressions, algebra, fractions & more','গাণিতিক রাশি, বীজগণিত, ভগ্নাংশ','blue','math'],['binary','Number Converter','সংখ্যা রূপান্তর','Binary, decimal, octal & hexadecimal','বাইনারি, দশমিক, অক্টাল ও হেক্স','purple','converter'],['flask','Numerical Lab','নিউমেরিক্যাল ল্যাব','All 16 methods with iteration tables','১৬টি পদ্ধতির সম্পূর্ণ ধাপ','orange','numerical'],['target','Practice Quiz','অনুশীলনী কুইজ','Five questions to strengthen your skills','৫টি প্রশ্নে দক্ষতা যাচাই','mint','practice']].map(([ic,en,bn,dE,dB,tone,tool])=>`<button class="quick-card" data-action="quick" data-tool="${tool}"><div class="quick-icon tone-${tone}">${icon(ic,23)}</div><div class="quick-arrow">${icon('right',15)}</div><h3>${t(en,bn)}</h3><p>${t(dE,dB)}</p></button>`).join('')}
+</div>
+<div class="home-lower"><section><div class="section-heading"><div><h2 class="section-title">${t('Explore by subject','বিষয় অনুযায়ী শিখুন')}</h2><p class="section-subtitle">${topics.length} ${t('lessons, clear explanations','টি বিষয়, সহজ ব্যাখ্যা')}</p></div><button class="text-link" data-nav="topics">${t('View all topics','সব বিষয়')} ${icon('right',14)}</button></div><div class="category-grid">${groups.map(g=>`<button class="category-card" data-action="open-group" data-group="${g.id}"><div class="category-icon tone-${g.color}">${icon(g.icon,21)}</div><div><div class="category-title">${esc(nameOf(g))}</div><div class="category-sub">${topics.filter(t=>t.group===g.id).length} ${t('topics to explore','টি বিষয়')}</div></div><span style="margin-left:auto;color:var(--muted-2)">${icon('chevron',15)}</span></button>`).join('')}</div></section><aside><div class="section-heading"><div><h2 class="section-title">${t('Your study note','আপনার স্টাডি নোট')}</h2><p class="section-subtitle">${t('A small tip for big progress','সফলতার ছোট্ট কৌশল')}</p></div></div><div class="study-tip"><div class="tip-head"><span class="tip-kicker">${t('LEARNING TIP','শেখার টিপস')}</span><span class="tone-orange" style="padding:9px;border-radius:10px">${icon('lightbulb',20)}</span></div><h3>${t('Understand the “why”, not just the answer.','শুধু উত্তর নয়, কেন—সেটাও বুঝুন।')}</h3><p>${t('If a step is confusing, ask Shikhi to explain it in simpler words. You can switch between Bangla and English anytime.','কোনো ধাপ কঠিন লাগলে শিখিকে আরও সহজ করে বোঝাতে বলুন। বাংলা ও ইংরেজি যেকোনো সময় বদলাতে পারবেন।')}</p><button class="btn btn-soft btn-small" data-nav="tutor">${t('Talk to your tutor','টিউটরের সাথে কথা বলুন')} ${icon('right',13)}</button><div class="tip-divider"></div><div class="tip-foot">${icon('award',19)} ${t(`You have a ${state.streak}-day study streak`,`আপনার ধারাবাহিক অধ্যয়ন: ${state.streak} দিন`)}</div></div></aside></div>`;}
+function renderTopics(){const result=searchTopics(state.topicSearch,state.topicGroup);const shown=result.slice(0,state.visibleTopics);return `
+<div class="page-heading"><div><div class="eyebrow">${t('THE KNOWLEDGE LIBRARY','শেখার লাইব্রেরি')}</div><h1 class="page-title">${t('Explore every topic','প্রতিটি বিষয় শিখুন')}</h1><p class="page-desc">${t('Clear definitions, useful formulas and worked examples in both languages.','বাংলা ও ইংরেজিতে সহজ সংজ্ঞা, দরকারি সূত্র এবং উদাহরণ।')}</p></div><span class="badge-soft">${topics.length} ${t('LESSONS','টি বিষয়')}</span></div>
+<div class="pill-row"><button class="pill ${state.topicGroup==='all'?'active':''}" data-action="topic-group" data-group="all">${t('All topics','সব বিষয়')} (${topics.length})</button>${groups.map(g=>`<button class="pill ${state.topicGroup===g.id?'active':''}" data-action="topic-group" data-group="${g.id}">${esc(nameOf(g))}</button>`).join('')}</div>
+<div class="topic-toolbar"><div class="search-field">${icon('search',17)}<input id="topic-search" type="search" value="${esc(state.topicSearch)}" placeholder="${t('Search in Bangla or English...','বাংলা বা ইংরেজিতে খুঁজুন...')}" aria-label="Search topics" /></div><div class="muted-small">${t('Showing','দেখানো হচ্ছে')} ${shown.length} ${t('of','টি /')} ${result.length} ${t('topics','টি বিষয়')}</div></div>
+${result.length?`<div class="topic-grid">${shown.map(topic=>renderTopicCard(topic)).join('')}</div>${result.length>shown.length?`<div style="display:flex;justify-content:center;margin:25px 0"><button class="btn btn-outline" data-action="more-topics">${t('Load more lessons','আরও বিষয় দেখুন')} ${icon('right',14)}</button></div>`:''}`:`<div class="empty-state">${icon('search',26)}${t('No matching lessons. Try a different keyword.','কোনো বিষয় পাওয়া যায়নি। অন্য শব্দ লিখুন।')}</div>`}`;}
+function renderTopicCard(topic){const g=groupById[topic.group];return `<button class="topic-card" data-topic="${topic.id}" aria-label="Open lesson ${esc(topic.en)}"><div class="topic-top"><span class="tone-${g.color}" style="padding:9px;border-radius:9px">${icon(g.icon,17)}</span>${state.learned.has(topic.id)?`<span class="completed-icon" title="Completed">${icon('check',17)}</span>`:`<span style="color:var(--muted-2)">${icon('chevron',15)}</span>`}</div><div><div class="topic-name">${esc(nameOf(topic))}</div><div class="topic-bn">${esc(state.lang==='bn'?topic.en:topic.bn)}</div></div><div class="topic-rule">${esc(topic.formula)}</div></button>`;}
+function renderChatMessage(message){const isUser=message.role==='user';return `<div class="chat-row ${isUser?'user':'assistant'}"><div class="chat-msg-avatar">${icon(isUser?'user':'sparkles',17)}</div><div><div class="chat-bubble">${renderMarkdown(message.content)}</div><div class="chat-meta">${message.time||''}${!isUser?`<button class="chat-copy" data-action="copy-chat" data-id="${message.id}" title="Copy answer" aria-label="Copy answer">${icon('copy',13)}</button>`:''}</div></div></div>`;}
+function renderTutor(){const empty=state.chats.length===0;const messages=empty?[{id:'welcome',role:'assistant',content:t('### Hi! I’m Shikhi, your study buddy 👋\n\nAsk me anything about **math or ICT**. I can explain formulas, solve calculations, show simple steps and help you prepare — in **Bangla or English**.\n\n**Where would you like to start?**','### হ্যালো! আমি শিখি, আপনার পড়ার সঙ্গী 👋\n\n**গণিত বা আইসিটি** নিয়ে প্রশ্ন করুন। আমি সূত্র বুঝাতে পারি, অঙ্ক সমাধান করতে পারি, সহজ ধাপে দেখাতে পারি। বাংলা বা ইংরেজিতে লিখুন।\n\n**কোন বিষয় দিয়ে শুরু করতে চান?**'),time:''}]:state.chats;return `
+<div class="page-heading"><div><div class="eyebrow">${t('A FRIENDLY HELPING HAND','পাশে আছে বন্ধু টিউটর')}</div><h1 class="page-title">${t('Ask, learn, understand.','প্রশ্ন করুন, শিখুন, বুঝুন।')}</h1><p class="page-desc">${t('No question is too small. Keep asking until it makes sense.','যতবার প্রয়োজন প্রশ্ন করুন, পুরোটা বুঝে নিন।')}</p></div></div>
+<div class="chat-layout"><section class="card chat-panel"><div class="chat-panel-top"><div class="tutor-presence"><div class="tutor-avatar">${icon('sparkles',20)}</div><div><h3>Shikhi ${t('Study Tutor','স্টাডি টিউটর')}</h3><p><span class="online-dot"></span> ${state.aiEnabled?t('AI connected','AI সংযুক্ত'):t('Built-in tutor ready','বিল্ট-ইন টিউটর প্রস্তুত')}</p></div></div><button class="icon-btn" data-action="clear-chat" title="${t('Clear chat','চ্যাট পরিষ্কার করুন')}" aria-label="Clear chat">${icon('trash',17)}</button></div>
+<div class="chat-messages" id="chat-messages">${messages.map(renderChatMessage).join('')}${state.chatLoading?`<div class="chat-row assistant"><div class="chat-msg-avatar">${icon('sparkles',17)}</div><div class="chat-bubble"><div class="typing"><i></i><i></i><i></i></div></div></div>`:''}</div>
+<div class="chat-chips">${[t('What is 25% of 480?','৪৮০ এর ২৫% কত?'),t('Solve 2x + 5 = 15','2x + 5 = 15 সমাধান'),t('Explain Bisection Method','Bisection Method বুঝিয়ে দাও'),t('Binary 1011 to decimal','Binary 1011 to decimal')].map(prompt=>`<button class="chat-chip" data-action="prompt" data-prompt="${esc(prompt)}">${esc(prompt)}</button>`).join('')}</div>
+<div class="chat-composer"><textarea id="chat-input" rows="1" placeholder="${t('Type your question... (Enter to send)','আপনার প্রশ্ন লিখুন... (Enter চাপুন)')}" aria-label="Write a question"></textarea><button class="send-btn" data-action="send-chat" ${state.chatLoading?'disabled':''} title="Send question">${icon('send',18)}</button></div><div class="chat-hint">${t('Press Enter to send • Shift+Enter for a new line','Enter পাঠাবে • Shift+Enter নতুন লাইন')}</div></section>
+<aside class="chat-side"><div class="card coach-card"><div class="coach-title">${icon('sparkles',19)} ${t('Your learning companion','আপনার শেখার বন্ধু')}</div><p>${t('Built-in calculations work without an API key. Connect AI for free-form word problems and richer back-and-forth explanations.','API key ছাড়াই সাধারণ অঙ্ক সমাধান সম্ভব। যেকোনো জটিল প্রশ্নের আরও সমৃদ্ধ ব্যাখ্যার জন্য AI সংযুক্ত করুন।')}</p><span class="status-pill">${icon(state.aiEnabled?'check':'calculator',13)} ${state.aiEnabled?t('AI Tutor active','AI Tutor চালু'):t('Local Tutor mode','লোকাল টিউটর মোড')}</span><div class="setting-inline"><span>${t('Detailed explanations','বিস্তারিত ব্যাখ্যা')}</span><button class="switch ${state.detailed?'on':''}" role="switch" aria-checked="${state.detailed}" data-action="toggle-detailed" aria-label="Detailed explanations"></button></div><button class="text-link" data-nav="settings">${t('Tutor connection settings','টিউটর সংযোগের সেটিংস')} ${icon('right',13)}</button></div>
+<div class="card coach-card"><div class="coach-title">${icon('lightbulb',19)} ${t('How to learn faster','কীভাবে দ্রুত শিখবেন')}</div><div class="tip-list"><div class="tip-line">${icon('check',17)}<span>${t('Start with a specific question.','একটি নির্দিষ্ট প্রশ্ন দিয়ে শুরু করুন।')}</span></div><div class="tip-line">${icon('check',17)}<span>${t('Ask “explain simply” if a step is hard.','কঠিন হলে “সহজ করে বোঝাও” বলুন।')}</span></div><div class="tip-line">${icon('check',17)}<span>${t('Practice a similar problem afterward.','পরে একই রকম অঙ্ক অনুশীলন করুন।')}</span></div></div></div></aside></div>`;}
+function field(form,key,label,placeholder='',wide=false,kind='text'){return `<div class="form-field ${wide?'span-2':''}"><label for="f-${form}-${key}">${label}</label>${kind==='textarea'?`<textarea class="textarea" id="f-${form}-${key}" data-bind="${form}" name="${key}" placeholder="${esc(placeholder)}">${esc(currentForm(form)[key]??'')}</textarea>`:`<input class="input" id="f-${form}-${key}" type="text" spellcheck="false" autocomplete="off" data-bind="${form}" name="${key}" value="${esc(currentForm(form)[key]??'')}" placeholder="${esc(placeholder)}" />`}</div>`;}
+function currentForm(form){if(form==='math')return state.mathForm;if(form==='converter')return state.converterForm;if(form==='numerical')return state.numericalForms[state.numericalFamily];return {};}
+function selectField(form,key,label,options,wide=false){const selected=currentForm(form)[key];return `<div class="form-field ${wide?'span-2':''}"><label for="f-${form}-${key}">${label}</label><select class="select" id="f-${form}-${key}" data-bind="${form}" name="${key}">${options.map(([value,text])=>`<option value="${esc(value)}" ${String(selected)===String(value)?'selected':''}>${esc(text)}</option>`).join('')}</select></div>`;}
+function renderTools(){return `<div class="page-heading"><div><div class="eyebrow">${t('THE PROBLEM-SOLVING DESK','সমাধানের জায়গা')}</div><h1 class="page-title">${t('Let’s work it out.','চলুন অঙ্ক সমাধান করি।')}</h1><p class="page-desc">${t('Real calculations, meaningful steps, and numerical method tables.','বাস্তব হিসাব, ধাপে ধাপে ব্যাখ্যা এবং সংখ্যাতাত্ত্বিক iteration table।')}</p></div></div>
+<div class="tool-tabs">${[['math','calculator','Math Solver','গণিত'],['converter','binary','ICT Converter','সংখ্যা পদ্ধতি'],['numerical','flask','Numerical Lab','নিউমেরিক্যাল']].map(([id,ic,en,bn])=>`<button class="tab ${state.tool===id?'active':''}" data-action="tool-tab" data-tool="${id}">${icon(ic,18)} ${t(en,bn)}</button>`).join('')}</div>
+${state.tool==='math'?renderMathTool():state.tool==='converter'?renderConverter():renderNumericalTool()}`;}
+function renderMathTool(){const mode=state.mathMode;let fields='';
+if(mode==='expression')fields=field('math','expression',t('Expression','গাণিতিক রাশি'),'(24 + 6) / 3',true);
+if(mode==='equation')fields=field('math','equation',t('Equation (linear or quadratic)','সমীকরণ (রৈখিক / দ্বিঘাত)'),'2x + 5 = 15',true);
+if(mode==='percentage')fields=field('math','percent',t('Percentage (%)','শতকরা (%)'),'25')+field('math','whole',t('Of what number?','কোন সংখ্যার?'),'480');
+if(mode==='fraction')fields=field('math','fractionA',t('First fraction','প্রথম ভগ্নাংশ'),'3/4')+field('math','fractionB',t('Second fraction','দ্বিতীয় ভগ্নাংশ'),'1/2')+selectField('math','operation',t('Operation','প্রক্রিয়া'),[['+','Add (+)'],['-','Subtract (−)'],['*','Multiply (×)'],['/','Divide (÷)']],true);
+if(mode==='ratio')fields=field('math','a',t('First quantity','প্রথম সংখ্যা'))+field('math','b',t('Second quantity','দ্বিতীয় সংখ্যা'));
+if(['gcd','statistics'].includes(mode))fields=field('math','numbers',t('Numbers separated by commas','কমা দিয়ে সংখ্যাগুলো লিখুন'),'12, 18, 30',true);
+if(mode==='geometry'){const s=state.mathForm.shape;fields=selectField('math','shape',t('Choose a shape','আকৃতি বেছে নিন'),[['rectangle','Rectangle / আয়তক্ষেত্র'],['square','Square / বর্গক্ষেত্র'],['triangle','Triangle / ত্রিভুজ'],['circle','Circle / বৃত্ত'],['trapezium','Trapezium / ট্রাপিজিয়াম']],true)+field('math','a',s==='circle'?t('Radius','ব্যাসার্ধ'):s==='square'?t('Side','বাহু'):s==='triangle'?t('Base','ভূমি'):s==='trapezium'?t('First parallel side','প্রথম সমান্তরাল বাহু'):t('Length','দৈর্ঘ্য'));if(['rectangle','triangle','trapezium'].includes(s))fields+=field('math','b',s==='rectangle'?t('Width','প্রস্থ'):s==='trapezium'?t('Second parallel side','দ্বিতীয় সমান্তরাল বাহু'):t('Height','উচ্চতা'));if(s==='trapezium')fields+=field('math','c',t('Height','উচ্চতা'));}
+if(mode==='combinatorics')fields=field('math','n',t('Total items (n)','মোট সংখ্যা (n)'))+field('math','r',t('Chosen items (r)','বাছাই সংখ্যা (r)'));
+if(mode==='interest')fields=field('math','p',t('Principal (P)','আসল (P)'))+field('math','r',t('Rate % per year (R)','বার্ষিক হার (%)'))+field('math','t',t('Time in years (T)','সময় (বছর)'));
+if(mode==='profit')fields=field('math','cp',t('Cost price (CP)','ক্রয়মূল্য'))+field('math','sp',t('Selling price (SP)','বিক্রয়মূল্য'));
+if(mode==='unitary')fields=field('math','count',t('Known number of units','দেওয়া পণ্যের সংখ্যা'))+field('math','total',t('Total cost for those units','সেগুলোর মোট মূল্য'))+field('math','want',t('How many units to calculate?','কতটি পণ্যের মূল্য বের করবেন?'),'',true);
+if(mode==='probability')fields=field('math','favorable',t('Favourable outcomes','অনুকূল ফলাফল'))+field('math','total',t('All equally likely outcomes','সম্ভাব্য মোট ফলাফল'));
+if(mode==='trigonometry')fields=field('math','angle',t('Angle','কোণ'))+selectField('math','trigFunc',t('Trigonometric function','ত্রিকোণমিতিক ফাংশন'),[['sin','sin'],['cos','cos'],['tan','tan']])+selectField('math','angleUnit',t('Unit','একক'),[['deg','Degrees / ডিগ্রি'],['rad','Radians / রেডিয়ান']],true);
+if(mode==='calculus')fields=field('math','function',t('Function f(x)','ফাংশন f(x)'),'x^2 + 3x',true)+field('math','x0',t('Evaluate derivative at x =','যে x-এ অন্তরক নির্ণয় করবেন'),'',true);
+if(mode==='primes')fields=field('math','n',t('Number to test and factor','যে সংখ্যাটি পরীক্ষা করবেন'),'',true);
+return `<div class="tool-layout"><section class="card tool-pane"><h3>${t('Mathematics workspace','গণিত সমাধান টুল')}</h3><p class="pane-desc">${t('Choose the kind of problem, enter your values, and get a worked solution.','অঙ্কের ধরন বেছে নিয়ে মান দিন, তারপর ধাপে ধাপে সমাধান দেখুন।')}</p><div class="form-field" style="margin-bottom:19px"><label>${t('Choose your tool','সমাধানের ধরন')}</label><select class="select" data-action="math-mode" aria-label="Choose math solver">${mathModes.map(m=>`<option value="${m.id}" ${mode===m.id?'selected':''}>${esc(nameOf(m))}</option>`).join('')}</select></div><form id="math-form" class="tool-form"><div class="form-grid">${fields}</div><button class="btn btn-primary" type="submit">${icon('calculator',16)} ${t('Solve step by step','ধাপে ধাপে সমাধান')}</button></form><div class="empty-panel-helper">${icon('info',15)} ${t('Use ^ for powers, such as x^2. Functions: sin(x), cos(x), sqrt(x), log(x).','ঘাতের জন্য ^ ব্যবহার করুন, যেমন x^2। ফাংশন: sin(x), cos(x), sqrt(x), log(x)।')}</div></section><section class="card result-pane">${renderResult(state.mathResult,'math')}</section></div>`;}
+function renderConverter(){const result=state.converterResult;return `<div class="tool-layout"><section class="card tool-pane"><h3>${t('ICT number system converter','আইসিটি সংখ্যা পদ্ধতি রূপান্তর')}</h3><p class="pane-desc">${t('Convert numbers between base 2, 8, 10 and 16. Supports signed integers and fractional values.','২, ৮, ১০ এবং ১৬ ভিত্তির রূপান্তর করুন। ঋণাত্মক ও ভগ্নাংশও সমর্থিত।')}</p><form id="converter-form" class="tool-form"><div class="form-grid">${field('converter','value',t('Number to convert','রূপান্তরের সংখ্যা'),'101101',true)}${selectField('converter','from',t('Current number base','বর্তমান ভিত্তি'),[['2','Binary (base 2)'],['8','Octal (base 8)'],['10','Decimal (base 10)'],['16','Hexadecimal (base 16)']],true)}</div><button class="btn btn-primary" type="submit">${icon('binary',16)} ${t('Convert to all bases','সব ভিত্তিতে রূপান্তর')}</button></form><div class="empty-panel-helper">${icon('info',15)} ${t('Digits A–F are allowed only in hexadecimal. Fractional output is shown to 18 digits with an ellipsis if unfinished.','A–F শুধু হেক্সাডেসিম্যালে ব্যবহারযোগ্য। দশমিকের পর সর্বোচ্চ ১৮টি অঙ্ক দেখানো হয়।')}</div></section><section class="card result-pane"><div class="result-head">${icon('check',19)} ${t('Converted numbers','রূপান্তরিত সংখ্যা')}</div>${!result?renderEmptyResult(t('Your conversions appear here','রূপান্তরের ফলাফল এখানে দেখাবে')):result.error?renderError(result.error):`<div class="base-results">${[[2,'Binary / বাইনারি'],[8,'Octal / অক্টাল'],[10,'Decimal / দশমিক'],[16,'Hex / হেক্স']].map(([base,title])=>`<div class="base-tile"><div class="base-label">${title} · ${t('Base','ভিত্তি')} ${base}</div><div class="base-bottom"><strong>${esc(result.conversions[base])}</strong><button data-action="copy-base" data-base="${base}" title="Copy number">${icon('copy',14)}</button></div></div>`).join('')}</div>${renderSteps(result.explanation,'converter')}`}</section></div>`;}
+function renderNumericalTool(){const family=state.numericalFamily,m=state.numericalMethod;const form=state.numericalForms[family];let fields='';
+if(family==='roots')fields=field('numerical','function',t('Function f(x)','ফাংশন f(x)'),'x^3 - x - 2',true)+(m==='bisection'||m==='regula'?field('numerical','a',t('Left endpoint (a)','বাম প্রান্ত (a)'))+field('numerical','b',t('Right endpoint (b)','ডান প্রান্ত (b)')):field('numerical','x0',t('Initial guess (x₀)','প্রথম অনুমান (x₀)'))+(m==='secant'?field('numerical','x1',t('Second guess (x₁)','দ্বিতীয় অনুমান (x₁)')):''))+field('numerical','tolerance',t('Tolerance','সহনীয় ত্রুটি'))+field('numerical','maxIter',t('Maximum iterations','সর্বোচ্চ পুনরাবৃত্তি'));
+if(family==='linear')fields=field('numerical','matrix',t('Augmented matrix (coefficients | answer)','বর্ধিত ম্যাট্রিক্স (সহগ | ফল)'),'4,1|6',true,'textarea')+(m==='jacobi'||m==='seidel'?field('numerical','tolerance',t('Tolerance','সহনীয় ত্রুটি'))+field('numerical','maxIter',t('Maximum iterations','পুনরাবৃত্তির সীমা')):'');
+if(family==='interpolation')fields=field('numerical','points',t('Known points (one x,y per line)','উপাত্ত (প্রতি লাইনে x,y)'),'0,1',true,'textarea')+field('numerical','queryX',t('Estimate value at x =','যে x-এ মান নির্ণয় করবেন'),'',true);
+if(family==='integration')fields=field('numerical','function',t('Function f(x)','ফাংশন f(x)'),'x^2',true)+field('numerical','a',t('Lower bound (a)','নিচের সীমা (a)'))+field('numerical','b',t('Upper bound (b)','উপরের সীমা (b)'))+field('numerical','n',t('Subintervals (n)','উপবিভাগ (n)'),'',true);
+if(family==='ode')fields=field('numerical','function',t('dy/dx = f(x,y)','dy/dx = f(x,y)'),'x+y',true)+field('numerical','x0',t('Initial x₀','শুরুর x₀'))+field('numerical','y0',t('Initial y₀','শুরুর y₀'))+field('numerical','target',t('Target x','শেষ x'))+field('numerical','h',t('Step size h','ধাপের মান h'));
+return `<div class="numerical-families">${numericalFamilies.map(g=>`<button class="pill ${family===g.id?'active':''}" data-action="numerical-family" data-family="${g.id}">${esc(nameOf(g))}</button>`).join('')}</div><div class="tool-layout"><section class="card tool-pane"><h3>${t('Numerical method lab','সংখ্যাতাত্ত্বিক পদ্ধতির ল্যাব')}</h3><p class="pane-desc">${t('Pick an algorithm. We calculate the actual iterations, matrices and intermediate values.','পদ্ধতি বেছে নিন। প্রতিটি ধাপে বাস্তব হিসাব ও iteration দেখুন।')}</p><div class="form-field method-select"><label>${t('Method / Algorithm','পদ্ধতি / অ্যালগরিদম')}</label><select class="select" data-action="numerical-method">${numericalMethods.filter(x=>x.family===family).map(x=>`<option value="${x.id}" ${m===x.id?'selected':''}>${esc(nameOf(x))}</option>`).join('')}</select></div><form id="numerical-form" class="tool-form"><div class="form-grid">${fields}</div><button class="btn btn-primary" type="submit">${icon('flask',16)} ${t('Calculate & show iterations','হিসাব ও সব ধাপ দেখুন')}</button></form><div class="empty-panel-helper">${icon('info',15)} ${family==='linear'?t('Example: 4,1|6 on line one; 1,3|7 on line two.','উদাহরণ: ১ম সারিতে 4,1|6 এবং ২য় সারিতে 1,3|7 লিখুন।'):family==='interpolation'?t('Enter x,y pairs, each on a new line.','প্রতি লাইনে x,y লিখুন।'):t('Try the sample values already filled in. Edit any input to experiment.','দেওয়া উদাহরণের মান দিয়ে শুরু করুন, চাইলে পরিবর্তন করুন।')}</div></section><section class="card result-pane">${renderResult(state.numericalResult,'numerical')}</section></div>`;}
+function renderEmptyResult(message){return `<div class="empty-result"><div class="empty-symbol">${icon('sparkles',29)}</div><h3>${esc(message)}</h3><p>${t('Enter the values on the left and click the solve button to see a detailed explanation.','বাঁয়ের ঘরে মান দিয়ে সমাধান বোতাম চাপুন, সব ব্যাখ্যা দেখতে পাবেন।')}</p></div>`;}
+function renderError(message){return `<div class="notice" style="border-color:#f1acac;color:#d26a6a">${icon('info',18)}<span>${esc(message)}</span></div>`;}
+function renderSteps(steps=[],context='math'){return `<h4 class="steps-head">${t('Step-by-step explanation','ধাপে ধাপে ব্যাখ্যা')}</h4>${steps.map((step,i)=>`<div class="step-item"><div class="step-number">${i+1}</div><p>${esc(state.lang==='bn'?translateStepBN(step,context):step)}</p></div>`).join('')}`;}
+function renderResult(result,kind){if(!result)return `<div class="result-head">${icon('check',19)} ${t('Your solution','আপনার সমাধান')}</div>${renderEmptyResult(t('Ready when you are!','সমাধান করার জন্য প্রস্তুত!'))}`;if(result.error)return `<div class="result-head">${icon('info',19)} ${t('Check your input','ইনপুট পরীক্ষা করুন')}</div>${renderError(result.error)}`;return `<div class="result-head">${icon('check',19)} ${t('Your solution','আপনার সমাধান')}<button class="text-link" data-action="copy-result" data-kind="${kind}" style="margin-left:auto">${icon('copy',13)} ${t('Copy answer','উত্তর কপি')}</button></div><div class="result-answer"><div class="result-kicker">${t('FINAL RESULT','চূড়ান্ত ফলাফল')}</div><strong>${esc(result.answer)}</strong></div>${renderSteps(result.steps,kind)}${result.rows?`<h4 class="steps-head">${t('Iteration / working table','Iteration / হিসাবের টেবিল')}</h4><div class="iteration-wrap"><table class="iteration-table"><thead><tr>${result.headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${result.rows.map(row=>`<tr>${row.map((c,i)=>`<td class="${typeof c==='string'&&c.includes('\n')?'matrix':''}">${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><div class="muted-small" style="margin-top:11px">${result.rows.length} ${t('computed steps shown','টি ধাপ দেখানো হয়েছে')}</div>`:''}`;}
+function renderPractice(){const quiz=state.quiz;return `<div class="page-heading"><div><div class="eyebrow">${t('PRACTICE MAKES PROGRESS','অনুশীলনেই উন্নতি')}</div><h1 class="page-title">${t('Train your math brain.','অনুশীলনে বাড়ুক দক্ষতা।')}</h1><p class="page-desc">${t('Five focused questions. Instant explanations. No pressure.','৫টি প্রশ্ন, সাথে সাথে সঠিক ব্যাখ্যা, কোনো চাপ নেই।')}</p></div></div>${!quiz?`<div class="card quiz-setup"><div><div class="stat-icon mint" style="margin-bottom:17px">${icon('target',24)}</div><h3 style="font-size:19px;margin:0 0 11px">${t('Ready for a small challenge?','ছোট্ট একটি চ্যালেঞ্জ নেবেন?')}</h3><p class="page-desc" style="margin-bottom:21px">${t('Choose your subject and difficulty, then answer a short set of questions. Each answer comes with an explanation.','বিষয় ও কঠিনতার মাত্রা বেছে ৫টি প্রশ্ন সমাধান করুন। প্রতিটি উত্তরের ব্যাখ্যাও পাবেন।')}</p><div class="notice">${icon('award',18)}<span>${t('Your quiz attempts and accuracy are saved on this device.','আপনার কুইজের ফল ও অগ্রগতি এই ডিভাইসে সংরক্ষিত থাকবে।')}</span></div></div><div><div class="form-field" style="margin-bottom:17px"><label>${t('Subject','বিষয়')}</label><select class="select" data-action="practice-group">${groups.map(g=>`<option value="${g.id}" ${state.practiceGroup===g.id?'selected':''}>${esc(nameOf(g))}</option>`).join('')}</select></div><div class="form-field" style="margin-bottom:24px"><label>${t('Difficulty','কঠিনতার মাত্রা')}</label><select class="select" data-action="practice-difficulty"><option value="easy" ${state.practiceDifficulty==='easy'?'selected':''}>${t('Foundation · Easy','সহজ · বেসিক')}</option><option value="hard" ${state.practiceDifficulty==='hard'?'selected':''}>${t('Challenge · Hard','চ্যালেঞ্জ · কঠিন')}</option></select></div><button class="btn btn-primary" style="width:100%" data-action="start-quiz">${icon('play',16)} ${t('Start 5-question quiz','৫ প্রশ্নের কুইজ শুরু করুন')}</button></div></div>`:quiz.finished?renderQuizFinish():renderQuizQuestion()}`;}
+function renderQuizQuestion(){const q=state.quiz,question=q.questions[q.index];const progress=Math.round(q.index/5*100);return `<div class="card quiz-card"><div class="quiz-top"><div class="badge-soft">${esc(nameOf(groupById[q.group]))}</div><div class="quiz-counter">${t('QUESTION','প্রশ্ন')} ${q.index+1} / 5</div></div><div class="quiz-progress"><div style="width:${progress}%"></div></div><h2 class="quiz-question">${esc(question.question)}</h2><div class="quiz-options">${question.options.map((opt,i)=>`<button class="quiz-option ${q.answered?(opt===question.answer?'correct':opt===q.selected?'wrong':''):''}" data-action="quiz-answer" data-answer="${esc(opt)}" ${q.answered?'disabled':''}><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${esc(opt)}</span>${q.answered&&opt===question.answer?icon('check',18):''}</button>`).join('')}</div>${q.answered?`<div class="quiz-explanation"><strong>${q.selected===question.answer?t('Correct! Well done.','সঠিক উত্তর! দারুণ।'):t('Good try. Here is why:','ভালো চেষ্টা! ব্যাখ্যাটি দেখুন:')}</strong><div>${esc(question.explanation)}</div></div>`:''}<div class="quiz-footer"><button class="text-link" data-action="quit-quiz">${icon('x',14)} ${t('End quiz','কুইজ বন্ধ করুন')}</button>${q.answered?`<button class="btn btn-primary" data-action="quiz-next">${q.index===4?t('See my results','ফলাফল দেখুন'):t('Next question','পরের প্রশ্ন')} ${icon('right',15)}</button>`:`<div class="muted-small">${t('Select one answer','একটি উত্তর বেছে নিন')}</div>`}</div></div>`;}
+function renderQuizFinish(){const q=state.quiz,score=Math.round(q.correct/5*100);return `<div class="card quiz-card"><div class="quiz-finish"><div class="progress-circle" style="--progress:${score}"><span>${q.correct}/5</span></div><div class="eyebrow">${t('QUIZ COMPLETE','কুইজ শেষ')}</div><h2>${score>=80?t('Fantastic work! 🎉','অসাধারণ! 🎉'):score>=60?t('You are getting stronger!','আরও ভালো করছেন!'):t('Every attempt helps you grow.','প্রতিটি চেষ্টাই শেখায়।')}</h2><p>${t(`You answered ${q.correct} out of 5 questions correctly. Review the ideas and try again for even better results.`,`৫টির মধ্যে ${q.correct}টি সঠিক উত্তর দিয়েছেন। আবার চেষ্টা করলে আরও ভালো হবে।`)}</p><div style="display:flex;gap:10px;justify-content:center;margin-top:23px;flex-wrap:wrap"><button class="btn btn-primary" data-action="restart-quiz">${icon('refresh',15)} ${t('Try another round','আবার অনুশীলন')}</button><button class="btn btn-outline" data-nav="progress">${icon('chart',15)} ${t('See my progress','অগ্রগতি দেখুন')}</button></div></div></div>`;}
+function renderProgress(){return `<div class="page-heading"><div><div class="eyebrow">${t('YOUR LEARNING JOURNEY','আপনার শেখার অগ্রগতি')}</div><h1 class="page-title">${t('Look how far you’ve come.','আপনি কতদূর এগিয়েছেন দেখুন।')}</h1><p class="page-desc">${t('Small wins add up. See your completed lessons and practice scores.','ছোট ছোট অর্জন মিলে বড় সাফল্য। শেখা বিষয় ও অনুশীলনের ফল দেখুন।')}</p></div></div>
+<div class="stats-grid"><div class="stat-card"><div class="stat-icon mint">${icon('book-open',22)}</div><div><div class="stat-value">${state.learned.size}/${topics.length}</div><div class="stat-label">${t('Lessons completed','শেখা বিষয়')}</div></div></div><div class="stat-card"><div class="stat-icon purple">${icon('target',22)}</div><div><div class="stat-value">${state.quizSessions}</div><div class="stat-label">${t('Quizzes finished','সম্পন্ন কুইজ')}</div></div></div><div class="stat-card"><div class="stat-icon orange">${icon('award',22)}</div><div><div class="stat-value">${accuracy()}%</div><div class="stat-label">${t('Questions answered correctly','সঠিক উত্তরের হার')}</div></div></div></div>
+<div class="progress-home"><div class="card setting-card"><h3>${t('Topic progress','বিষয়ভিত্তিক অগ্রগতি')}</h3><p>${t('Mark a topic as learned from its lesson to track your progress.','বিষয়ের পাঠে ‘শেখা হয়েছে’ চিহ্ন দিন।')}</p><div class="progress-list">${groups.map(g=>{const count=topics.filter(x=>x.group===g.id).length,complete=topics.filter(x=>x.group===g.id&&state.learned.has(x.id)).length;return `<div class="progress-row"><div><div class="row-title">${esc(nameOf(g))}</div><div class="row-sub">${complete} / ${count} ${t('lessons','টি বিষয়')}</div></div>${progressBar(complete/count*100)}</div>`;}).join('')}</div><button class="btn btn-outline btn-small" style="margin-top:17px" data-nav="topics">${t('Browse lessons','বিষয়গুলো দেখুন')} ${icon('right',13)}</button></div><div class="card setting-card"><h3>${t('Your achievements','আপনার অর্জন')}</h3><p>${t('Keep showing up. These numbers grow as you study.','প্রতিদিন অনুশীলন করলে সংখ্যা বাড়বে।')}</p><div class="progress-list"><div class="progress-row"><div class="row-title">${t('Calculations solved','সমাধান করা অঙ্ক')}</div><strong>${state.solvedCount}</strong></div><div class="progress-row"><div class="row-title">${t('Practice answers checked','অনুশীলনে উত্তর যাচাই')}</div><strong>${state.totalAttempted}</strong></div><div class="progress-row"><div class="row-title">${t('Correct answers','সঠিক উত্তর')}</div><strong>${state.totalCorrect}</strong></div><div class="progress-row"><div class="row-title">${t('Day streak','ধারাবাহিক দিন')}</div><strong>${state.streak} ${t('days','দিন')}</strong></div></div><div class="notice">${icon('lightbulb',16)} <span>${t('For durable, multi-device progress, connect a database in a future version. This edition saves your data locally in your browser.','বিভিন্ন ডিভাইসে তথ্য রাখতে পরবর্তীতে ডেটাবেজ সংযুক্ত করতে হবে। এই সংস্করণে ব্রাউজারেই অগ্রগতি সংরক্ষণ হয়।')}</span></div></div></div>`;}
+function renderSettings(){return `<div class="page-heading"><div><div class="eyebrow">${t('MAKE IT YOUR OWN','আপনার মতো করে সাজান')}</div><h1 class="page-title">${t('Your study preferences','আপনার পছন্দের সেটিংস')}</h1><p class="page-desc">${t('Choose the language, appearance and tutor mode that suits you best.','ভাষা, থিম ও টিউটর মোড বেছে নিন।')}</p></div></div><div class="setting-grid"><section class="card setting-card"><h3>${t('Language / ভাষা','ভাষা / Language')}</h3><p>${t('All screens, lessons and tutor replies support Bangla and English.','সব স্ক্রিন, বিষয় এবং টিউটরের উত্তর বাংলা ও ইংরেজিতে দেখা যাবে।')}</p><div class="theme-options"><button class="theme-option ${state.lang==='en'?'selected':''}" data-action="set-lang" data-lang="en">English ${state.lang==='en'?icon('check',15):''}</button><button class="theme-option ${state.lang==='bn'?'selected':''}" data-action="set-lang" data-lang="bn">বাংলা ${state.lang==='bn'?icon('check',15):''}</button></div></section>
+<section class="card setting-card"><h3>${t('Appearance','অ্যাপের থিম')}</h3><p>${t('Use a fresh light workspace or a low-glare dark mode.','উজ্জ্বল লাইট থিম বা চোখের আরামদায়ক ডার্ক থিম।')}</p><div class="theme-options"><button class="theme-option ${state.theme==='light'?'selected':''}" data-action="set-theme" data-theme="light">${icon('sun',17)} ${t('Light','লাইট')}</button><button class="theme-option ${state.theme==='dark'?'selected':''}" data-action="set-theme" data-theme="dark">${icon('moon',17)} ${t('Dark','ডার্ক')}</button></div></section>
+<section class="card setting-card"><h3>${t('AI Tutor connection','AI টিউটর সংযোগ')}</h3><p>${t('The website works without an AI key using built-in solvers and lessons. For open-ended questions, an administrator can configure OpenAI on the server.','AI key ছাড়াও ক্যালকুলেটর ও পাঠ ব্যবহার করা যাবে। সব ধরনের প্রশ্নের জন্য সার্ভারে OpenAI সংযোগ করতে হবে।')}</p><div class="setting-inline" style="border-top:0;padding-top:0"><span class="status-pill">${icon(state.aiEnabled?'check':'calculator',14)} ${state.aiEnabled?t('AI is connected','AI সংযুক্ত'):t('Local mode is active','লোকাল মোড চালু')}</span><button class="btn btn-outline btn-small" data-action="check-ai">${icon('refresh',14)} ${t('Check status','স্ট্যাটাস দেখুন')}</button></div><div class="setup-code"><code>OPENAI_API_KEY=your_api_key</code><button data-action="copy-command" aria-label="Copy setup example">${icon('copy',16)}</button></div><div class="notice">${icon('shield',17)} <span>${t('Keep your API key in the server .env file, never in browser code. Restart the server after configuring it. AI usage may incur provider charges.','API key শুধু সার্ভারের .env ফাইলে রাখুন, ব্রাউজারে নয়। সেটিং বদলালে সার্ভার রিস্টার্ট করুন। AI ব্যবহারে খরচ হতে পারে।')}</span></div></section>
+<section class="card setting-card"><h3>${t('Learning preferences & data','শেখার সেটিংস ও তথ্য')}</h3><p>${t('Detailed step breakdown is recommended when studying unfamiliar material. Your information stays in this browser.','নতুন অঙ্ক শেখার সময় বিস্তারিত ব্যাখ্যা বেছে নিন। সব তথ্য এই ব্রাউজারেই থাকে।')}</p><div class="setting-inline" style="border-top:0"><span style="font-size:12px;font-weight:750">${t('Detailed explanations','বিস্তারিত ব্যাখ্যা')}</span><button class="switch ${state.detailed?'on':''}" role="switch" aria-checked="${state.detailed}" data-action="toggle-detailed" aria-label="Detailed explanation"></button></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px"><button class="btn btn-outline btn-small" data-action="export-progress">${icon('download',15)} ${t('Export progress','অগ্রগতি সংরক্ষণ')}</button><button class="btn btn-small" data-action="reset-confirm" style="background:#fdecec;color:#c56258">${icon('trash',15)} ${t('Reset my data','তথ্য মুছে ফেলুন')}</button></div></section></div>`;}
+function renderModal(){if(!state.modal)return '';if(state.modal==='topic'){const topic=topicById[state.selectedTopic];if(!topic)return '';const g=groupById[topic.group];const complete=state.learned.has(topic.id);return `<div class="modal-backdrop" data-action="close-modal-outside"><section class="modal" role="dialog" aria-modal="true" aria-label="${esc(topic.en)}"><div class="modal-top"><div><div class="eyebrow">${esc(nameOf(g))}</div><h2>${esc(nameOf(topic))}</h2><div class="muted-small">${esc(state.lang==='bn'?topic.en:topic.bn)}</div></div><button class="icon-btn" data-action="close-modal" aria-label="Close lesson">${icon('x',18)}</button></div><div class="modal-body"><p class="lesson-desc">${esc(state.lang==='bn'?topic.descriptionBn:topic.descriptionEn)}</p><div class="lesson-section"><div class="lesson-label">${t('MAIN CONCEPT / FORMULA','মূল ধারণা / সূত্র')}</div><div class="lesson-value">${esc(topic.formula)}</div></div><div class="lesson-section"><div class="lesson-label">${t('WORKED EXAMPLE','উদাহরণ')}</div><div class="lesson-value">${esc(topic.example)}</div></div><div class="notice">${icon('lightbulb',17)}<span>${t('Try changing the numbers in the example, and ask the tutor to explain any confusing step.','উদাহরণের সংখ্যাগুলো বদলে চেষ্টা করুন। কোনো ধাপ বুঝতে সমস্যা হলে টিউটরকে জিজ্ঞেস করুন।')}</span></div><div class="lesson-actions"><button class="btn ${complete?'btn-outline':'btn-primary'}" data-action="mark-learned" data-id="${topic.id}">${icon('check',16)} ${complete?t('Mark as not completed','অসম্পন্ন চিহ্ন দিন'):t('Mark as learned','শেখা হয়েছে')}</button><button class="btn btn-outline" data-action="ask-topic" data-id="${topic.id}">${icon('message',16)} ${t('Ask Shikhi','শিখিকে জিজ্ঞেস করুন')}</button><button class="btn btn-soft" data-action="topic-tool" data-id="${topic.id}">${icon('calculator',16)} ${t('Try a calculator','ক্যালকুলেটর খুলুন')}</button></div></div></section></div>`;}
+if(state.modal==='search')return `<div class="modal-backdrop" data-action="close-modal-outside"><section class="modal" style="max-width:570px" role="dialog" aria-modal="true"><div class="modal-top"><div><div class="eyebrow">${t('QUICK FIND','দ্রুত খুঁজুন')}</div><h2>${t('Find your next lesson','আপনার পরের বিষয় খুঁজুন')}</h2></div><button class="icon-btn" data-action="close-modal" aria-label="Close search">${icon('x',18)}</button></div><div class="modal-search"><div class="search-field" style="max-width:none">${icon('search',18)}<input id="global-search" placeholder="${t('Type a topic in either language...','বাংলা বা ইংরেজিতে বিষয় লিখুন...')}" value="${esc(state.globalSearch)}" /></div></div><div class="search-results" id="global-results">${renderSearchResults()}</div></section></div>`;
+if(state.modal==='confirm')return `<div class="modal-backdrop" data-action="close-modal-outside"><section class="modal" style="max-width:410px" role="alertdialog" aria-modal="true"><div class="modal-top"><div><div class="eyebrow">${t('PLEASE CONFIRM','নিশ্চিত করুন')}</div><h2>${state.confirmAction==='reset'?t('Reset all local learning data?','সব তথ্য মুছে ফেলবেন?'):t('Clear your conversation?','চ্যাট পরিষ্কার করবেন?')}</h2></div><button class="icon-btn" data-action="close-modal" aria-label="Close">${icon('x',18)}</button></div><div class="modal-body"><p class="page-desc">${state.confirmAction==='reset'?t('This removes saved lessons, practice records and chat history from this browser. It cannot be undone.','এতে এই ব্রাউজারের শেখা বিষয়, কুইজের ফল ও চ্যাট হিস্ট্রি মুছে যাবে। ফিরিয়ে আনা যাবে না।'):t('This clears your saved chat history on this device.','এই ডিভাইসে সংরক্ষিত সব চ্যাট পরিষ্কার হয়ে যাবে।')}</p><div class="lesson-actions"><button class="btn btn-outline" data-action="close-modal">${t('Cancel','বাতিল')}</button><button class="btn" style="background:#e96c60;color:#fff" data-action="confirm-delete">${icon('trash',16)} ${t('Yes, clear','হ্যাঁ, মুছুন')}</button></div></div></section></div>`;return '';}
+function renderSearchResults(){const results=searchTopics(state.globalSearch).slice(0,12);return results.length?results.map(topic=>`<button class="search-result" data-topic="${topic.id}"><div><strong>${esc(nameOf(topic))}</strong><small>${esc(state.lang==='bn'?topic.en:topic.bn)} · ${esc(nameOf(groupById[topic.group]))}</small></div>${icon('chevron',17)}</button>`).join(''):`<div class="empty-state">${t('No results yet. Try another word.','কোনো ফল পাওয়া যায়নি। অন্য শব্দ লিখুন।')}</div>`;}
+function render(){document.documentElement.dataset.theme=state.theme;document.documentElement.lang=state.lang==='bn'?'bn':'en';document.body.classList.toggle('lang-bn',state.lang==='bn');$('#root').innerHTML=renderShell();if(state.page==='tutor'){const box=$('#chat-messages');if(box)box.scrollTop=box.scrollHeight;}}
+function navigate(page){if(!['home','tutor','topics','tools','practice','progress','settings'].includes(page))return;state.page=page;state.openMenu=false;state.modal=null;render();window.scrollTo({top:0,behavior:'instant'});}
+function openTopic(id){if(!topicById[id])return;state.modal='topic';state.selectedTopic=id;render();}
+function toggleLang(lang){state.lang=lang==='bn'?'bn':'en';save();render();}
+function toggleTheme(theme){state.theme=theme==='dark'?'dark':'light';save();render();}
+let toastTimer;
+function toast(message){const box=$('#toast');if(!box)return;const content=$('#toast-text');if(content)content.textContent=message;box.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>box.classList.remove('show'),2400);}
+async function copyText(value){try {if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(String(value));else {const element=document.createElement('textarea');element.value=String(value);element.style.position='fixed';document.body.appendChild(element);element.select();document.execCommand('copy');element.remove();}toast(t('Copied to clipboard','কপি হয়েছে'));}catch{toast(t('Copy was blocked. Select and copy manually.','কপি করা যায়নি। নিজে কপি করুন।'));}}
+async function getAIHealth(){try {const result=await fetch('/api/health',{cache:'no-store'});if(!result.ok)throw Error('No backend');const data=await result.json();state.aiEnabled=!!data.aiEnabled;}catch{state.aiEnabled=false;}state.aiChecked=true;render();}
+function timeNow(){return new Date().toLocaleTimeString(state.lang==='bn'?'bn-BD':'en-US',{hour:'numeric',minute:'2-digit'});}
+async function sendChat(value){const question=String(value||'').trim();if(!question||state.chatLoading)return;
+ const previous=[...state.chats].reverse().find(m=>m.role==='assistant')?.content||'';
+ state.chats.push({id:String(Date.now())+'u',role:'user',content:question,time:timeNow()});state.solvedCount++;recordActivity();state.chatLoading=true;save();render();
+ let answer='';
+ if(state.aiEnabled){try{
+  const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({language:state.lang,detailed:state.detailed,messages:state.chats.slice(-15).map(m=>({role:m.role,content:m.content}))})});
+  const data=await response.json();if(!response.ok)throw Error(data.error||'AI service unavailable');answer=data.answer;
+ }catch{answer=t('**AI temporarily unavailable — switching to the built-in tutor.**\n\n','**AI আপাতত পাওয়া যাচ্ছে না — বিল্ট-ইন টিউটরের উত্তর।**\n\n')+localTutor(question,state.lang,state.detailed,previous);}}
+ else answer=localTutor(question,state.lang,state.detailed,previous);
+ state.chats.push({id:String(Date.now())+'a',role:'assistant',content:answer,time:timeNow()});state.chatLoading=false;save();render();const el=$('#chat-input');if(el)el.focus();}
+function runTool(kind){try{if(kind==='math'){state.mathResult=solveMathTool(state.mathMode,state.mathForm);state.solvedCount++;}else if(kind==='converter'){state.converterResult=convertBase(state.converterForm.value,Number(state.converterForm.from));state.solvedCount++;}else {state.numericalResult=solveNumerical(state.numericalMethod,state.numericalForms[state.numericalFamily]);state.solvedCount++;}recordActivity();save();render();toast(t('Solved! Explore the steps.','সমাধান হয়েছে! ধাপগুলো দেখুন।'));}catch(e){if(kind==='math')state.mathResult={error:e.message};else if(kind==='converter')state.converterResult={error:e.message};else state.numericalResult={error:e.message};render();}}
+function startQuiz(){state.quiz={group:state.practiceGroup,difficulty:state.practiceDifficulty,questions:createQuiz(state.practiceGroup,state.practiceDifficulty),index:0,selected:null,answered:false,correct:0,finished:false};render();}
+function answerQuiz(answer){const q=state.quiz;if(!q||q.answered||q.finished)return;q.selected=answer;q.answered=true;state.totalAttempted++;if(answer===q.questions[q.index].answer){q.correct++;state.totalCorrect++;}recordActivity();save();render();}
+function nextQuiz(){const q=state.quiz;if(!q||!q.answered)return;if(q.index===4){q.finished=true;state.quizSessions++;recordActivity();save();}else{q.index++;q.selected=null;q.answered=false;}render();}
+function resetAll(){state.learned.clear();state.chats=[];state.solvedCount=0;state.totalCorrect=0;state.totalAttempted=0;state.quizSessions=0;state.streak=0;state.lastActivity='';state.quiz=null;state.mathResult=null;state.converterResult=null;state.numericalResult=null;state.modal=null;save();render();toast(t('Your local study data has been cleared.','আপনার সংরক্ষিত তথ্য মুছে দেওয়া হয়েছে।'));}
+function exportProgress(){const payload={exportedAt:new Date().toISOString(),learnedTopics:[...state.learned].map(id=>topicById[id]?.en||id),problemsExplored:state.solvedCount,quizSessions:state.quizSessions,correctAnswers:state.totalCorrect,totalPracticeAnswers:state.totalAttempted,streak:state.streak};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='shikhi-study-progress.json';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);toast(t('Progress file exported','অগ্রগতির ফাইল সংরক্ষণ হয়েছে'));}
+
+document.addEventListener('click',async event=>{
+ const nav=event.target.closest('[data-nav]');if(nav){event.preventDefault();navigate(nav.dataset.nav);return;}
+ const open=event.target.closest('[data-topic]');if(open){openTopic(open.dataset.topic);return;}
+ const b=event.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
+ if(action==='close-modal-outside'){if(event.target===b){state.modal=null;render();}return;}
+ if(action==='toggle-menu'){state.openMenu=!state.openMenu;render();return;}
+ if(action==='close-menu'){state.openMenu=false;render();return;}
+ if(action==='toggle-lang'){toggleLang(state.lang==='en'?'bn':'en');return;}
+ if(action==='toggle-theme'){toggleTheme(state.theme==='light'?'dark':'light');return;}
+ if(action==='set-lang'){toggleLang(b.dataset.lang);return;}
+ if(action==='set-theme'){toggleTheme(b.dataset.theme);return;}
+ if(action==='toggle-detailed'){state.detailed=!state.detailed;save();render();return;}
+ if(action==='search-modal'){state.modal='search';state.globalSearch='';render();$('#global-search')?.focus();return;}
+ if(action==='close-modal'){state.modal=null;render();return;}
+ if(action==='topic-group'){state.topicGroup=b.dataset.group;state.visibleTopics=24;render();return;}
+ if(action==='open-group'){state.topicGroup=b.dataset.group;state.topicSearch='';state.visibleTopics=24;navigate('topics');return;}
+ if(action==='more-topics'){state.visibleTopics+=24;render();return;}
+ if(action==='quick'){const tool=b.dataset.tool;if(tool==='practice'){navigate('practice');return;}state.tool=tool;navigate('tools');return;}
+ if(action==='mark-learned'){const id=b.dataset.id;if(state.learned.has(id)){state.learned.delete(id);}else{state.learned.add(id);recordActivity();}save();render();toast(t('Lesson progress updated','পাঠের অগ্রগতি সংরক্ষিত হয়েছে'));return;}
+ if(action==='ask-topic'){const topic=topicById[b.dataset.id];if(!topic)return;const question=state.lang==='bn'?`${topic.bn} খুব সহজভাবে উদাহরণসহ বুঝিয়ে দাও`:`Explain ${topic.en} in easy steps with an example`;navigate('tutor');await sendChat(question);return;}
+ if(action==='topic-tool'){const topic=topicById[b.dataset.id];if(!topic)return;state.tool=topic.group==='ict'?'converter':topic.group==='numerical'?'numerical':'math';if(topic.group==='geometry')state.mathMode='geometry';if(topic.group==='higher')state.mathMode='statistics';navigate('tools');return;}
+ if(action==='tool-tab'){state.tool=b.dataset.tool;render();return;}
+ if(action==='numerical-family'){state.numericalFamily=b.dataset.family;state.numericalMethod=numericalFamilies.find(g=>g.id===state.numericalFamily).methods[0];state.numericalResult=null;render();return;}
+ if(action==='send-chat'){await sendChat($('#chat-input')?.value);return;}
+ if(action==='prompt'){await sendChat(b.dataset.prompt);return;}
+ if(action==='copy-chat'){const m=state.chats.find(m=>m.id===b.dataset.id);if(m)await copyText(m.content);return;}
+ if(action==='clear-chat'){state.confirmAction='chat';state.modal='confirm';render();return;}
+ if(action==='copy-base'){if(state.converterResult?.conversions)await copyText(state.converterResult.conversions[b.dataset.base]);return;}
+ if(action==='copy-result'){const r=b.dataset.kind==='math'?state.mathResult:state.numericalResult;if(r?.answer)await copyText(`${r.answer}\n${(r.steps||[]).map((step,i)=>`${i+1}. ${step}`).join('\n')}`);return;}
+ if(action==='start-quiz'){startQuiz();return;}
+ if(action==='quiz-answer'){answerQuiz(b.dataset.answer);return;}
+ if(action==='quiz-next'){nextQuiz();return;}
+ if(action==='quit-quiz'){state.quiz=null;render();return;}
+ if(action==='restart-quiz'){startQuiz();return;}
+ if(action==='reset-confirm'){state.confirmAction='reset';state.modal='confirm';render();return;}
+ if(action==='confirm-delete'){if(state.confirmAction==='reset')resetAll();else{state.chats=[];state.modal=null;save();render();toast(t('Chat cleared','চ্যাট পরিষ্কার হয়েছে'));}return;}
+ if(action==='copy-command'){await copyText('OPENAI_API_KEY=your_api_key');return;}
+ if(action==='check-ai'){await getAIHealth();toast(state.aiEnabled?t('AI tutor connected','AI টিউটর সংযুক্ত'):t('Built-in tutor is available; AI is not configured','বিল্ট-ইন টিউটর চালু আছে; AI সংযুক্ত নয়'));return;}
+ if(action==='export-progress'){exportProgress();return;}
+});
+document.addEventListener('input',event=>{
+ const target=event.target;
+ if(target.id==='topic-search'){
+  state.topicSearch=target.value;state.visibleTopics=24;const pos=target.selectionStart;render();const replacement=$('#topic-search');if(replacement){replacement.focus();try{replacement.setSelectionRange(pos,pos);}catch{}}return;
+ }
+ if(target.id==='global-search'){state.globalSearch=target.value;const holder=$('#global-results');if(holder)holder.innerHTML=renderSearchResults();return;}
+ if(target.matches('[data-bind]')){const form=currentForm(target.dataset.bind);form[target.name]=target.value;return;}
+ if(target.id==='chat-input'){target.style.height='auto';target.style.height=Math.min(125,Math.max(40,target.scrollHeight))+'px';}
+});
+document.addEventListener('change',event=>{
+ const target=event.target;
+ if(target.matches('[data-bind]')){
+  const form=currentForm(target.dataset.bind);form[target.name]=target.value;
+  if(target.name==='shape'&&target.dataset.bind==='math')render();return;
+ }
+ if(target.dataset.action==='math-mode'){state.mathMode=target.value;state.mathResult=null;render();return;}
+ if(target.dataset.action==='numerical-method'){state.numericalMethod=target.value;state.numericalResult=null;render();return;}
+ if(target.dataset.action==='practice-group'){state.practiceGroup=target.value;return;}
+ if(target.dataset.action==='practice-difficulty'){state.practiceDifficulty=target.value;return;}
+});
+document.addEventListener('submit',event=>{
+ if(event.target.id==='math-form'){event.preventDefault();runTool('math');}
+ if(event.target.id==='converter-form'){event.preventDefault();runTool('converter');}
+ if(event.target.id==='numerical-form'){event.preventDefault();runTool('numerical');}
+});
+document.addEventListener('keydown',event=>{
+ if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();state.modal='search';state.globalSearch='';render();$('#global-search')?.focus();return;}
+ if(event.key==='Escape'&&state.modal){state.modal=null;render();return;}
+ if(event.target.id==='chat-input'&&event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();sendChat(event.target.value);}
+});
+
+render();getAIHealth();
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));
