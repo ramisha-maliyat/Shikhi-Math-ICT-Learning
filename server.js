@@ -33,19 +33,19 @@ const limitBody = async (request) => {
 createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-    if (url.pathname === '/api/health' && req.method === 'GET') return json(res, 200, { aiEnabled: Boolean(process.env.OPENAI_API_KEY), model: process.env.OPENAI_API_KEY ? 'AI Tutor' : 'Local Tutor' });
+    if (url.pathname === '/api/health' && req.method === 'GET') return json(res, 200, { aiEnabled: Boolean(process.env.GROQ_API_KEY), model: process.env.GROQ_API_KEY ? (process.env.GROQ_MODEL || 'openai/gpt-oss-20b') : 'Local Tutor' });
     if (url.pathname === '/api/chat' && req.method === 'POST') {
-      if (!process.env.OPENAI_API_KEY) return json(res, 503, { error: 'AI tutor is not configured. Local tutor can still help.' });
+      if (!process.env.GROQ_API_KEY) return json(res, 503, { error: 'AI tutor is not configured. Local tutor can still help.' });
       if (!withinAILimit(req.socket.remoteAddress || 'unknown')) return json(res, 429, { error: 'AI request limit reached; try again later or use local tools.' });
       const { messages, language = 'en', detailed = true } = await limitBody(req);
       if (!Array.isArray(messages) || !messages.length || messages.length > 18 || messages.some(m => !['user','assistant'].includes(m?.role) || typeof m.content !== 'string' || m.content.length > 6000)) return json(res, 400, { error: 'Invalid chat messages.' });
       const instructions = `You are Shikhi (শিখি), a warm but rigorous mathematics/ICT tutor for Bangladesh students. Respond in ${language === 'bn' ? 'Bangla (বাংলা)' : 'English'} unless the question naturally requires the other language. Cover arithmetic, algebra, geometry, calculus, statistics, ICT number systems and ALL numerical algorithms, with correct math and computed steps. ${detailed ? 'Break everything down into gentle, numbered, beginner-friendly steps. Show the formula, substitutions, final result, and check it when possible.' : 'Give a clear concise answer and the key reasoning.'} Use Markdown and optional LaTeX. When necessary inputs are missing, ask specifically for them; do not invent numeric solutions. Explain assumptions, convergence requirements, and stopping criteria for numerical methods.`;
       const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 26000);
       try {
-        const api = await fetch('https://api.openai.com/v1/chat/completions', {
+        const api = await fetch('https://api.groq.com/openai/v1/chat/completions', {
           method:'POST', signal:controller.signal,
-          headers: { 'Authorization':`Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type':'application/json' },
-          body: JSON.stringify({ model: process.env.OPENAI_MODEL || 'gpt-4.1-mini', messages: [{ role:'system', content:instructions }, ...messages], temperature:0.2 })
+          headers: { 'Authorization':`Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type':'application/json' },
+          body: JSON.stringify({ model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', messages: [{ role:'system', content:instructions }, ...messages], temperature:0.2 })
         });
         const data = await api.json();
         if (!api.ok) { console.error('AI request failed', api.status, data?.error?.type); return json(res, 502, { error:'AI service unavailable. You can use Local Tutor.' }); }
@@ -62,7 +62,7 @@ createServer(async (req, res) => {
     if (relative.startsWith('/.env') || relative.endsWith('/package.json') || relative.startsWith('/tests/') || relative.startsWith('/.git/') || relative.startsWith('/scripts/')) return json(res,403,{error:'Forbidden'});
     const info = await stat(filename);
     if (!info.isFile()) return json(res, 404, { error:'Not found' });
-    res.writeHead(200, { 'Content-Type': mime[extname(filename)] || 'application/octet-stream', 'Cache-Control': filename.endsWith('service-worker.js') ? 'no-cache' : 'public, max-age=3600' });
+    res.writeHead(200, { 'Content-Type': mime[extname(filename)] || 'application/octet-stream', 'Cache-Control': (filename.endsWith('service-worker.js') || filename.endsWith('index.html') || filename.endsWith('Shikhi_Offline.html')) ? 'no-store' : 'public, max-age=3600' });
     if (req.method === 'HEAD') return res.end();
     return res.end(await readFile(filename));
   } catch (err) {
